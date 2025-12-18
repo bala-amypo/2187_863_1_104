@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@AllArgsConstructor
+
 @Table(name="issued_device_record")
 public class IssuedDeviceRecord{
     @Id 
