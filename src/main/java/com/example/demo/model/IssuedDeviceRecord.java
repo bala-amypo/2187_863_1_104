@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@AllArgsConstructor
 @Table(name="issued_device_record")
 public class IssuedDeviceRecord{
     @Id 
@@ -66,10 +67,10 @@ public class IssuedDeviceRecord{
     public void setIssuedDate(LocalDate issuedDate){
         this.issuedDate= issuedDate;
     }
-    public LocalDateTime getReturnedDate(){
+    public LocalDate getReturnedDate(){
         return returnedDate;
     }
-    public void setReturnedDate(LocalDateTime returnedDate){
+    public void setReturnedDate(LocalDate returnedDate){
         this.returnedDate = returnedDate;
         this.status = (returnedDate == null) ? "ISSUED" : "RETURNED";
     }
@@ -81,7 +82,7 @@ public class IssuedDeviceRecord{
     return returnedDate == null;
     }
     public void markAsReturned(){
-    this.returnedDate = LocalDate.now()
+    this.returnedDate = LocalDate.now();
     this.status = "RETURNED";
     }
 }
