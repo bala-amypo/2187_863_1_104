@@ -19,21 +19,20 @@ public class IssuedDeviceRecord{
 
 
     @Column(nullable = false)
-    private Boolean isEligible;
+    private LocalDate issuedDate;
+
+    @Column
+    private LocalDate returnedDate;
 
     @Column(nullable = false)
-    private String reason;
-
-    @Column(nullable = false , updatable = false)
-    private LocalDateTime checkedAt;
+    private String status;
 
 
-    public EligibilityCheckRecord(){
+    public IssuedDeviceRecord(){
         
     }
 
-    public EligibilityCheckRecord(Long employeeId, Long deviceItemId, String reason,Boolean isEligible){
-        
+    public IssuedDeviceRecord(Long employeeId, Long deviceItemId){
     this.employeeId = employeeId;
     this.deviceItemId = deviceItemId;
     this.isEligible = isEligible;
