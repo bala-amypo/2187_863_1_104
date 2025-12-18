@@ -67,9 +67,20 @@ public class EligibilityCheckRecord{
     public void setIsEligible(Boolean isEligible){
         this.isEligible= isEligible;
     }
-    public LocalDateTime getCreatedAt(){
-        return createdAt;
+    public String getReason(){
+        return reason;
     }
+    public void setReason(String reason){
+        this.reason = reason;
+
+    }
+    public LocalDateTime getCheckedAt(){
+        return checkedAt;
+    }
+    public void setCheckedAt(LocalDateTime checkedAt){
+        this.checkedAt = checkedAt;
+    }
+
     public boolean isActive(){
     return active != null && active;
     }
