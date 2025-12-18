@@ -64,17 +64,10 @@ public class IssuedDeviceRecord{
         return issuedDate;
     }
     public void setIssuedDate(LocalDate issuedDate){
-        this.isEligible= isEligible;
+        this.issuedDate= issuedDate;
     }
-    public String getReason(){
-        return reason;
-    }
-    public void setReason(String reason){
-        this.reason = reason;
-
-    }
-    public LocalDateTime getCheckedAt(){
-        return checkedAt;
+    public LocalDateTime getReturnedDate(){
+        return returnedDate;
     }
     public void setCheckedAt(LocalDateTime checkedAt){
         this.checkedAt = checkedAt;
