@@ -28,11 +28,11 @@ public class EligibilityCheckRecord{
     private LocalDateTime checkedAt;
 
 
-    public EmployeeProfile(){
+    public EligibilityCheckRecord(){
         this.checkedAt = LocalDateTime.now();
     }
 
-    public EligibilityCheckRecord(Long employeeId, Long employeeId, Long deviceItemId, String reason,Boolean active){
+    public EligibilityCheckRecord(Long employeeId, Long deviceItemId, String reason,Boolean active){
         
     this.employeeId = employeeId;
     this.deviceItemId = deviceItemId;
@@ -48,7 +48,7 @@ public class EligibilityCheckRecord{
     public void setId(Long id){
     this.id = id;
     }
-    public String getEmployeeId(){
+    public Long getEmployeeId(){
     return employeeId;
     }
     public void setEmployeeId(Long employeeId){
@@ -81,8 +81,8 @@ public class EligibilityCheckRecord{
         this.checkedAt = checkedAt;
     }
 
-    public boolean isActive(){
-    return active != null && active;
+    public boolean isEligible(){
+    return isEligible != null && isEligible;
     }
 }
 
