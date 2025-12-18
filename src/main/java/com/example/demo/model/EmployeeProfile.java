@@ -51,9 +51,24 @@ public class EmployeeProfile{
     this(employeeId,fullName,email,department,jobRole,true);
     }
     //Getters and Setters
+
     public Long getId(){
-        return
+        return id;
     }
+    public void setId(Long id){
+    this.id = id;
+    }
+    public String getEmployeeId(){
+    return employeeId;
+    }
+    public void setEmployeeId(String employeeId){
+    this.employeeId = employeeId;
+    }
+    public String getEmail(){
+    return email;
+    }
+    public void setEmail
+
 
 
     
