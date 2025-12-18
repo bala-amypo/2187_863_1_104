@@ -40,10 +40,6 @@ public class EligibilityCheckRecord{
     this.reason = reason;
     this.checkedAt = LocalDateTime.now();
     }
-    public EmployeeProfile(String employeeId, String fullName, String email, String department,String jobRole){
-
-    this(employeeId,fullName,email,department,jobRole,true);
-    }
     //Getters and Setters
 
     public Long getId(){
@@ -55,14 +51,14 @@ public class EligibilityCheckRecord{
     public String getEmployeeId(){
     return employeeId;
     }
-    public void setEmployeeId(String employeeId){
+    public void setEmployeeId(Long employeeId){
     this.employeeId = employeeId;
     }
-    public String getEmail(){
-    return email;
+    public Long getDeviceItemId(){
+    return deviceItemId;
     }
-    public void setEmail(String email){
-    this.email = email;
+    public void setDeviceItemId(Long deviceItemId){
+    this.deviceItemId = deviceItemId;
     }
     public String getDepartment(){
         return department;
