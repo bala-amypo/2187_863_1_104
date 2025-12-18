@@ -1,10 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-package com.example.demo.model;
-
-import jakarta.persistence.*;
-import java.time.LocalDateTime;
+import jakarta.validation.constraints.Min;
 
 @Entity
 @Table(name="device_catalog_item")
@@ -75,26 +72,27 @@ public class DeviceCatalogItem{
     public String getModel(){
         return model;
     }
-    public void setModel(String Model){
+    public void setModel(String model){
         this.model = model;
     }
     public Integer getMaxAllowedPerEmployee(){
     return maxAllowedPerEmployee;
     }
-    public void setMaxAllowedPerEmployee(String maxAllowedPerEmployee){
+    public void setMaxAllowedPerEmployee(Integer maxAllowedPerEmployee){
     if(maxAllowedPerEmployee != null && maxAllowedPerEmployee < 1){
-    throw new BadRequestException("
+    throw new BadRequestException("maxAllowedPerEmployee");
     
     }
+    this.maxAllowedPerEmployee = maxAllowedPerEmployee;
+    }
+
     public Boolean getActive(){
         return active;
     }
     public void setActive(Boolean active){
         this.active = active;
     }
-    public LocalDateTime getCreatedAt(){
-        return createdAt;
-    }
+    
     public boolean isActive(){
     return active != null && active;
     }
