@@ -10,5 +10,13 @@ public class EmployeeProfile{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    N
+    @NotBlank(message="Employee ID is required")
+    @Column(nullable = false,unique = true)
+    private String employeeId;
+
+    @NotBlank(message="Full is required")
+    @Column(nullable = false,unique = true)
+    private String employeeId;
+
+
 }
