@@ -22,12 +22,12 @@ public class DeviceCatalogItem{
 
     
     @Column(nullable = false)
-    private String email;
+    private String model;
 
 
     
     @Column(nullable = false)
-    private String department;
+    private Integer maxAllowedPerEmployee;
 
     
     @Column(nullable = false)
