@@ -15,33 +15,24 @@ public class EligibilityCheckRecord{
     private Long employeeId;
 
     @Column(nullable = false)
-    private String fullName;
+    private Long deviceItemId;
 
-    
-    @Column(nullable = false,unique = true)
-    private String email;
-
-
-    
-    @Column(nullable = false)
-    private String department;
-
-    
-    @Column(nullable = false)
-    private String jobRole;
 
     @Column(nullable = false)
-    private Boolean active = true;
+    private Boolean isEligible;
+
+    @Column(nullable = false)
+    private String reason;
 
     @Column(nullable = false , updatable = false)
-    private LocalDateTime createdAt;
+    private LocalDateTime checkedAt;
 
 
     public EmployeeProfile(){
-        this.createdAt = LocalDateTime.now();
+        this.checkedAt = LocalDateTime.now();
     }
 
-    public EmployeeProfile(String employeeId, String fullName, String email, String department,String jobRole,Boolean active){
+    public EligibilityCheckRecord(Long employeeId, String fullName, String email, String department,String jobRole,Boolean active){
         
     this.employeeId = employeeId;
     this.fullName = fullName;
