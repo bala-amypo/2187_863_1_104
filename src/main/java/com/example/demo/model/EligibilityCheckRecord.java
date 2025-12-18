@@ -60,23 +60,12 @@ public class EligibilityCheckRecord{
     public void setDeviceItemId(Long deviceItemId){
     this.deviceItemId = deviceItemId;
     }
-    public String getDepartment(){
-        return department;
+    
+    public Boolean getIsEligible(){
+        return isEligible;
     }
-    public void setDepartment(String department){
-        this.department = department;
-    }
-    public String getJobRole(){
-    return jobRole;
-    }
-    public void setJobRole(String jobRole){
-    this.jobRole = jobRole;
-    }
-    public Boolean getActive(){
-        return active;
-    }
-    public void setActive(Boolean active){
-        this.active = active;
+    public void setIsEligible(Boolean isEligible){
+        this.isEligible= isEligible;
     }
     public LocalDateTime getCreatedAt(){
         return createdAt;
