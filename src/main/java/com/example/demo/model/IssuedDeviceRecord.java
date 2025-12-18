@@ -34,14 +34,11 @@ public class IssuedDeviceRecord{
 
     public IssuedDeviceRecord(Long employeeId, Long deviceItemId){
     this.employeeId = employeeId;
-    this.dnoeviceItemId = deviceItemId;
+    this.deviceItemId = deviceItemId;
     this.issuedDate = LocalDate.now();
     this.status = "ISSUED";
     }
-    @PrePersist
-    protected void onCheck(){
-        this.checkedAt = LocalDataTime.now();
-    }
+
     //Getters and Setters
 
     public Long getId(){
@@ -63,10 +60,10 @@ public class IssuedDeviceRecord{
     this.deviceItemId = deviceItemId;
     }
     
-    public Boolean getIsEligible(){
-        return isEligible;
+    public LocalDate getIssuedDate(){
+        return issuedDate;
     }
-    public void setIsEligible(Boolean isEligible){
+    public void setIssuedDate(LocalDate issuedDate){
         this.isEligible= isEligible;
     }
     public String getReason(){
