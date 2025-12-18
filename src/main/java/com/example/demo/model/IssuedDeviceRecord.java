@@ -69,12 +69,13 @@ public class IssuedDeviceRecord{
     public LocalDateTime getReturnedDate(){
         return returnedDate;
     }
-    public void setCheckedAt(LocalDateTime checkedAt){
-        this.checkedAt = checkedAt;
+    public void setReturnedDate(LocalDateTime returnedDate){
+        this.returnedDate = returnedDate;
+        this.status = (returnedDate == null) ? "ISSUED" : "RETURNED;
     }
 
-    public boolean isEligible(){
-    return isEligible != null && isEligible;
+    public boolean isActive(){
+    return isEligibl
     }
 }
 
