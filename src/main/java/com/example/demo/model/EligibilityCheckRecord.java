@@ -32,15 +32,13 @@ public class EligibilityCheckRecord{
         this.checkedAt = LocalDateTime.now();
     }
 
-    public EligibilityCheckRecord(Long employeeId, String fullName, String email, String department,String jobRole,Boolean active){
+    public EligibilityCheckRecord(Long employeeId, Long employeeId, Long deviceItemId, String reason,Boolean active){
         
     this.employeeId = employeeId;
-    this.fullName = fullName;
-    this.email = email;
-    this.department = department;
-    this.jobRole = jobRole;
-    this.active = active;
-    this.createdAt = LocalDateTime.now();
+    this.deviceItemId = deviceItemId;
+    this.isEligible= isEligible;
+    this.reason = reason;
+    this.checkedAt = LocalDateTime.now();
     }
     public EmployeeProfile(String employeeId, String fullName, String email, String department,String jobRole){
 
