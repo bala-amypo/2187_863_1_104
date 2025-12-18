@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name="issued_device_record")
@@ -71,11 +71,18 @@ public class IssuedDeviceRecord{
     }
     public void setReturnedDate(LocalDateTime returnedDate){
         this.returnedDate = returnedDate;
-        this.status = (returnedDate == null) ? "ISSUED" : "RETURNED;
+        this.status = (returnedDate == null) ? "ISSUED" : "RETURNED";
+    }
+    public String getStatus(){
+    return status;
     }
 
     public boolean isActive(){
-    return isEligibl
+    return returnedDate == null;
+    }
+    public void markAsReturned(){
+    this.returnedDate = LocalDate.now()
+    this.status = "RETURNED";
     }
 }
 
