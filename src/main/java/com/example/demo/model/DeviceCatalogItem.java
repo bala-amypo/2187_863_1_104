@@ -69,20 +69,22 @@ public class DeviceCatalogItem{
     public String getDeviceType(){
     return deviceType;
     }
-    public void setDeviceType(String email){
-    this.email = email;
+    public void setDeviceType(String DeviceType){
+    this.deviceType = deviceType;
     }
-    public String getDepartment(){
-        return department;
+    public String getModel(){
+        return model;
     }
-    public void setDepartment(String department){
-        this.department = department;
+    public void setModel(String Model){
+        this.model = model;
     }
-    public String getJobRole(){
-    return jobRole;
+    public Integer getMaxAllowedPerEmployee(){
+    return maxAllowedPerEmployee;
     }
-    public void setJobRole(String jobRole){
-    this.jobRole = jobRole;
+    public void setMaxAllowedPerEmployee(String maxAllowedPerEmployee){
+    if(maxAllowedPerEmployee != null && maxAllowedPerEmployee < 1){
+    throw new BadRequestException("
+    
     }
     public Boolean getActive(){
         return active;
