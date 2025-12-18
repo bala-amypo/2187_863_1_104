@@ -36,15 +36,17 @@ public class EmployeeProfile{
     @Column(nullable = false , updatable = false)
     private LocalDateTime createdAt;
 
+    public EmployeeProfile(){}
+
     public EmployeeProfile(String employeeId, String fullName, String email, String department,String jobRole,Boolean active){
         
     this.employeeId = employeeId;
     this.fullName = fullName;
     this.email = email;
-    this department = department;
+    this.department = department;
     this.jobRole = jobRole;
     this.active = active;
-    this.createdAt = LocalDataTime.now();
+    this.createdAt = LocalDateTime.now();
     }
     public EmployeeProfile(String employeeId, String fullName, String email, String department,String jobRole){
 
@@ -73,7 +75,7 @@ public class EmployeeProfile{
     public String getDepartment(){
         return department;
     }
-    publiic void setDepartment(String department){
+    public void setDepartment(String department){
         this.department = department;
     }
     public String getJobRole(){
@@ -85,14 +87,14 @@ public class EmployeeProfile{
     public Boolean getActive(){
         return active;
     }
-    public void setActice(Boolean active){
+    public void setActive(Boolean active){
         this.active = active;
     }
     public LocalDateTime getCreatedAt(){
         return createdAt;
     }
     public boolean isActive(){
-    return ative != null && active;
+    return active != null && active;
     }
 }
 
@@ -106,4 +108,3 @@ public class EmployeeProfile{
 
 
 
-}
