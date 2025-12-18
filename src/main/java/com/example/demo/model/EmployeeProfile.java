@@ -36,7 +36,10 @@ public class EmployeeProfile{
     @Column(nullable = false , updatable = false)
     private LocalDateTime createdAt;
 
-    public EmployeeProfile(){}
+
+    public EmployeeProfile(){
+        this.createdAt = LocalDateTime
+    }
 
     public EmployeeProfile(String employeeId, String fullName, String email, String department,String jobRole,Boolean active){
         
