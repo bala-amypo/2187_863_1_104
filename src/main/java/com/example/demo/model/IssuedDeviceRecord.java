@@ -35,7 +35,7 @@ public class IssuedDeviceRecord{
     public IssuedDeviceRecord(Long employeeId, Long deviceItemId){
     this.employeeId = employeeId;
     this.deviceItemId = deviceItemId;
-    this.isEligible = isEligible;
+    this.issuedDate = isEligible;
     this.reason = reason;
     this.checkedAt = LocalDateTime.now();
     }
