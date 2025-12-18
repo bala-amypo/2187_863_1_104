@@ -30,8 +30,16 @@ public class EmployeeProfile{
     @Column(nullable = false)
     private String jobRole;
 
-      @Column(nullable = false)
-    private Boolean active =tr;
+    @Column(nullable = false)
+    private Boolean active = true;
+
+    @Column(nullable = false , updatable = false)
+    private LocalDateTime createdAt;
+
+    public EmployeeProfile(String employeeId, String fullName, String email, String department,String jobRole){
+    this(employeeId,fullName,email,department,jobRole,true);
+
+    this.emplo
 
 
     
