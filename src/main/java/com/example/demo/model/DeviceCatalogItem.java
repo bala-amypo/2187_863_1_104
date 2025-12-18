@@ -22,7 +22,7 @@ public class DeviceCatalogItem{
     private String model;
 
 
-    @Min(value = 1,message ="maxAllowedPerEmployee must be at least 1")
+    @Min(value = 1)
     @Column(nullable = false)
     private Integer maxAllowedPerEmployee;
 
@@ -66,7 +66,7 @@ public class DeviceCatalogItem{
     public String getDeviceType(){
     return deviceType;
     }
-    public void setDeviceType(String DeviceType){
+    public void setDeviceType(String deviceType){
     this.deviceType = deviceType;
     }
     public String getModel(){
@@ -79,10 +79,6 @@ public class DeviceCatalogItem{
     return maxAllowedPerEmployee;
     }
     public void setMaxAllowedPerEmployee(Integer maxAllowedPerEmployee){
-    if(maxAllowedPerEmployee != null && maxAllowedPerEmployee < 1){
-    throw new BadRequestException("maxAllowedPerEmployee");
-    
-    }
     this.maxAllowedPerEmployee = maxAllowedPerEmployee;
     }
 
