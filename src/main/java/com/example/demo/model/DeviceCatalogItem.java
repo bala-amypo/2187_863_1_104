@@ -61,15 +61,15 @@ public class DeviceCatalogItem{
     this.id = id;
     }
     public String getDeviceCode(){
-    return device;
+    return deviceCode;
     }
-    public void setEmployeeId(String employeeId){
-    this.employeeId = employeeId;
+    public void setDeviceCode(String deviceCode){
+    this.deviceCode = deviceCode;
     }
-    public String getEmail(){
-    return email;
+    public String getDeviceType(){
+    return deviceType;
     }
-    public void setEmail(String email){
+    public void setDeviceType(String email){
     this.email = email;
     }
     public String getDepartment(){
