@@ -40,10 +40,7 @@ public class EligibilityCheckRecord{
     this.reason = reason;
     this.checkedAt = LocalDateTime.now();
     }
-    @PrePersist
-    protected void onCheck(){
-        this.checkedAt = LocalDataTime.now();
-    }
+    
     //Getters and Setters
 
     public Long getId(){
