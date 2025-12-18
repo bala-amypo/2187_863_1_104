@@ -42,17 +42,15 @@ public class DeviceCatalogItem{
 
     public DeviceCatalogItem(String deviceCode, String deviceType, String model,Integer maxAllowedPerEmployee,Boolean active){
         
-    this.deviceCode = ;
-    this.fullName = fullName;
-    this.email = email;
-    this.department = department;
-    this.jobRole = jobRole;
+    this.deviceCode = deviceCode;
+    this.deviceType = deviceType;
+    this.model = model;
+    setMaxAllowedPerEmployee(maxAllowedPerEmployee);
     this.active = active;
-    this.createdAt = LocalDateTime.now();
-    }
-    public EmployeeProfile(String employeeId, String fullName, String email, String department,String jobRole){
 
-    this(employeeId,fullName,email,department,jobRole,true);
+    }
+    public DeviceCatalogItem(String deviceCode, String deviceType, String model,Integer maxAllowedPerEmployee){
+    this(deviceCode,deviceType,model,maxAllowedPerEmployee,true);
     }
     //Getters and Setters
 
@@ -62,8 +60,8 @@ public class DeviceCatalogItem{
     public void setId(Long id){
     this.id = id;
     }
-    public String getEmployeeId(){
-    return employeeId;
+    public String getDeviceCode(){
+    return device;
     }
     public void setEmployeeId(String employeeId){
     this.employeeId = employeeId;
