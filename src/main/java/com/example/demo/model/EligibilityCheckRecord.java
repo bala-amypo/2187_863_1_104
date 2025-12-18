@@ -29,16 +29,20 @@ public class EligibilityCheckRecord{
 
 
     public EligibilityCheckRecord(){
-        this.checkedAt = LocalDateTime.now();
+        
     }
 
-    public EligibilityCheckRecord(Long employeeId, Long deviceItemId, String reason,Boolean active){
+    public EligibilityCheckRecord(Long employeeId, Long deviceItemId, String reason,Boolean isEligible){
         
     this.employeeId = employeeId;
     this.deviceItemId = deviceItemId;
-    this.isEligible= isEligible;
+    this.isEligible = isEligible;
     this.reason = reason;
     this.checkedAt = LocalDateTime.now();
+    }
+    @PrePersist
+    protected void onCheck(){
+        this.checkedAt = LocalDataTime.now();
     }
     //Getters and Setters
 
