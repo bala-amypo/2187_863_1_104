@@ -36,10 +36,24 @@ public class EmployeeProfile{
     @Column(nullable = false , updatable = false)
     private LocalDateTime createdAt;
 
+    public EmployeeProfile(String employeeId, String fullName, String email, String department,String jobRole,Boolean active){
+        
+    this.employeeId = employeeId;
+    this.fullName = fullName;
+    this.email = email;
+    this department = department;
+    this.jobRole = jobRole;
+    this.active = active;
+    this.createdAt = LocalDataTime.now();
+    }
     public EmployeeProfile(String employeeId, String fullName, String email, String department,String jobRole){
-    this(employeeId,fullName,email,department,jobRole,true);
 
-    this.emplo
+    this(employeeId,fullName,email,department,jobRole,true);
+    }
+    //Getters and Setters
+    public Long getId(){
+        return
+    }
 
 
     
