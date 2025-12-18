@@ -38,7 +38,7 @@ public class EmployeeProfile{
 
 
     public EmployeeProfile(){
-        this.createdAt = LocalDateTime
+        this.createdAt = LocalDateTime.now();
     }
 
     public EmployeeProfile(String employeeId, String fullName, String email, String department,String jobRole,Boolean active){
