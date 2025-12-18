@@ -5,3 +5,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name="employees")
+public class EmployeeProfile{
+    
+}
