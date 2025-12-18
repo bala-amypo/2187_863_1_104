@@ -25,28 +25,24 @@ public class DeviceCatalogItem{
     private String model;
 
 
-    
+    @Min(value = 1,message ="maxAllowedPerEmployee must be at least 1")
     @Column(nullable = false)
     private Integer maxAllowedPerEmployee;
 
-    
-    @Column(nullable = false)
-    private String jobRole;
 
     @Column(nullable = false)
     private Boolean active = true;
 
-    @Column(nullable = false , updatable = false)
-    private LocalDateTime createdAt;
+    
 
 
-    public EmployeeProfile(){
-        this.createdAt = LocalDateTime.now();
+    public DeviceCatalogItem(){
+        
     }
 
-    public EmployeeProfile(String employeeId, String fullName, String email, String department,String jobRole,Boolean active){
+    public DeviceCatalogItem(String deviceCode, String deviceType, String model,Integer maxAllowedPerEmployee,Boolean active){
         
-    this.employeeId = employeeId;
+    this.deviceCode = ;
     this.fullName = fullName;
     this.email = email;
     this.department = department;
