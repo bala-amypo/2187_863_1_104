@@ -34,10 +34,9 @@ public class IssuedDeviceRecord{
 
     public IssuedDeviceRecord(Long employeeId, Long deviceItemId){
     this.employeeId = employeeId;
-    this.deviceItemId = deviceItemId;
+    this.dnoeviceItemId = deviceItemId;
     this.issuedDate = LocalDate.now();
     this.status = "ISSUED";
-    this.returnedDate = null;
     }
     @PrePersist
     protected void onCheck(){
