@@ -43,7 +43,13 @@ public class EmployeeProfileController {
      return ResponseEntity.ok(Map.of("message","Employee status updated")
      );
      @DeleteMappind("/{id}")
-     
+     public ResponseEntity<Void>deleteEmployee(
+        @PathVariable Long id
+     ){
+        service.deleteEmployee(id);
+        return ResponseEntity.noContent().build();
+        }
+     }
         
     
 
