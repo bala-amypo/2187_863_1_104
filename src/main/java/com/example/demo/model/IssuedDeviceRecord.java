@@ -10,12 +10,7 @@ public class IssuedDeviceRecord{
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(name = "employee_id",nullable= false)
-    private Long employeeId;
-
-    @Column(name = "device_item_id",nullable= false)
-    private Long deviceItemId;
+  
     
     @ManyToOne(optional = false)
     @JoinColumn(name = "employee_id",nullable = false)
@@ -55,16 +50,16 @@ public class IssuedDeviceRecord{
     public void setId(Long id){
     this.id = id;
     }
-    public Long getEmployeeId(){
-    return employeeId;
+    public EmployeeProfile getEmployee(){
+    return employee;
     }
-    public void setEmployeeId(Long employeeId){
-    this.employeeId = employeeId;
+    public void setEmployees(EmployeeProfile employee){
+    this.employee = employee;
     }
-    public Long getDeviceItemId(){
-    return deviceItemId;
+    public DeviceCatalogItem getDeviceItem(){
+    return deviceItem;
     }
-    public void setDeviceItemId(Long deviceItemId){
+    public void setDeviceItem(DeviceCatalogueItem deviceItemId){
     this.deviceItemId = deviceItemId;
     }
     
