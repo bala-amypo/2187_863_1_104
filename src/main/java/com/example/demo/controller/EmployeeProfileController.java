@@ -5,31 +5,30 @@ import com.example.demo.model.EmployeeProfile;
 import com.example.demo.repository.EmployeeProfileRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeProfileController {
-
+    
     private final EmployeeProfileRepository employeeProfileRepository;
-
+    
     public EmployeeProfileController(EmployeeProfileRepository employeeProfileRepository) {
         this.employeeProfileRepository = employeeProfileRepository;
     }
-
+    
     @GetMapping
     public List<EmployeeProfile> getAllEmployees() {
         return employeeProfileRepository.findAll();
     }
-
+    
     @GetMapping("/{id}")
     public ResponseEntity<EmployeeProfile> getEmployeeById(@PathVariable Long id) {
         return employeeProfileRepository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
+    
     @PostMapping
     public EmployeeProfile createEmployee(@RequestBody EmployeeProfile employee) {
         if (employeeProfileRepository.findByEmployeeId(employee.getEmployeeId()).isPresent()) {
@@ -40,7 +39,7 @@ public class EmployeeProfileController {
         }
         return employeeProfileRepository.save(employee);
     }
-
+    
     @PutMapping("/{id}")
     public ResponseEntity<EmployeeProfile> updateEmployee(@PathVariable Long id, @RequestBody EmployeeProfile employee) {
         return employeeProfileRepository.findById(id)
@@ -53,7 +52,7 @@ public class EmployeeProfileController {
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
-
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
         return employeeProfileRepository.findById(id)

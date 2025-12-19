@@ -5,31 +5,30 @@ import com.example.demo.model.DeviceCatalogItem;
 import com.example.demo.repository.DeviceCatalogItemRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/devices")
 public class DeviceCatalogController {
-
+    
     private final DeviceCatalogItemRepository deviceCatalogItemRepository;
-
+    
     public DeviceCatalogController(DeviceCatalogItemRepository deviceCatalogItemRepository) {
         this.deviceCatalogItemRepository = deviceCatalogItemRepository;
     }
-
+    
     @GetMapping
     public List<DeviceCatalogItem> getAllDevices() {
         return deviceCatalogItemRepository.findAll();
     }
-
+    
     @GetMapping("/{id}")
     public ResponseEntity<DeviceCatalogItem> getDeviceById(@PathVariable Long id) {
         return deviceCatalogItemRepository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
+    
     @PostMapping
     public DeviceCatalogItem createDevice(@RequestBody DeviceCatalogItem device) {
         if (deviceCatalogItemRepository.findByDeviceCode(device.getDeviceCode()).isPresent()) {
@@ -40,7 +39,7 @@ public class DeviceCatalogController {
         }
         return deviceCatalogItemRepository.save(device);
     }
-
+    
     @PutMapping("/{id}")
     public ResponseEntity<DeviceCatalogItem> updateDevice(@PathVariable Long id, @RequestBody DeviceCatalogItem device) {
         return deviceCatalogItemRepository.findById(id)
@@ -53,7 +52,7 @@ public class DeviceCatalogController {
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
-
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteDevice(@PathVariable Long id) {
         return deviceCatalogItemRepository.findById(id)
