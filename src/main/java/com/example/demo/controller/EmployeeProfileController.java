@@ -33,6 +33,13 @@ public class EmployeeProfileController {
         {
             return ResponseEntity.ok<>(service.getEmployeeById(id));
         }
+    @PutMapping ("/{id}/status")
+    public ResponseEntity<Map<String,String>>
+    updateEmpployeeStatus(
+    @PathVariable Long id)
+        {
+    )
+        
     
 
 
