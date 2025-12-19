@@ -46,13 +46,7 @@ public class IssuedDeviceRecord{
     this.issuedDate = LocalDate.now();
     this.status = "ISSUED";
     }
-    //businness rule enforcement
-    public void markAsReturned(){
-    if(this.returnedDate != null){
-    throw new IllegalStateException("already returned");
-    }
-    this.returnedDate = LocalDate.now()
-    this.status = "RETURNED";
+
     //Getters and Setters
 
     public Long getId(){
@@ -61,7 +55,7 @@ public class IssuedDeviceRecord{
     public void setId(Long id){
     this.id = id;
     }
-    public Long getEmployee(){
+    public Long getEmployeeId(){
     return employeeId;
     }
     public void setEmployeeId(Long employeeId){
