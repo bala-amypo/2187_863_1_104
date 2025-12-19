@@ -34,7 +34,7 @@ public class EligibilityCheckRecord{
         
     }
 
-    public EligibilityCheckRecord(Long employeeId, Long deviceItemId, String reason,Boolean isEligible){
+    public EligibilityCheckRecord( EmployeeProfile e, deviceItemId, String reason,Boolean isEligible){
         
     this.employeeId = employeeId;
     this.deviceItemId = deviceItemId;
