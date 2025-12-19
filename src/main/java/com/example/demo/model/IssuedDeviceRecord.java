@@ -11,14 +11,19 @@ public class IssuedDeviceRecord{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @Column(name = "employee_id",nullable= false)
+    private Long employeeId;
+
+    @Column(name = "device_item_id",nullable= false)
+    private Long deviceItemId;
+    
     @ManyToOne(optional = false)
     @JoinColumn(name = "employee_id",nullable = false)
     private EmployeeProfile employee;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "device_item_id",nullable = false)
-    @Column(nullable = false)
-    private DeviceCatalogItem deviceItemId;
+    private DeviceCatalogItem deviceItem;
 
 
     @Column(nullable = false)
