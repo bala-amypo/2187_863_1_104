@@ -31,7 +31,9 @@ public class EligibilityCheckRecord{
     public EligibilityCheckRecord(){
         
     }
-    @p
+    @Prepersist
+    protected void onCreate(){
+    this.checkedAt = LocalDateTime.now();
 
     public EligibilityCheckRecord(Long employeeId, Long deviceItemId, String reason,Boolean isEligible){
         
