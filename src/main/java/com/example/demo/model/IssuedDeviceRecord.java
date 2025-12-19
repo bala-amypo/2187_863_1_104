@@ -78,8 +78,11 @@ public class IssuedDeviceRecord{
         return returnedDate;
     }
     public void setReturnedDate(LocalDate returnedDate){
+        if(this.returnedDate != null){
+        throw new RunTimeException("already returned");
+        }
         this.returnedDate = returnedDate;
-        this.status = (returnedDate == null) ? "ISSUED" : "RETURNED";
+        this.status = "RETURNED";
     }
     public String getStatus(){
     return status;
@@ -88,10 +91,7 @@ public class IssuedDeviceRecord{
     public boolean isActive(){
     return returnedDate == null;
     }
-    public void markAsReturned(){
-    this.returnedDate = LocalDate.now();
-    this.status = "RETURNED";
-    }
+   
 }
 
 
