@@ -22,8 +22,7 @@ public class EmployeeProfileController {
     }
 
     @PostMapping
-    public ResponseEntity<EmployeeProfile>
-    createEmployee(
+    public ResponseEntity<EmployeeProfile>createEmployee(
     @RequestBody EmployeeProfile employee){
         return new ResponseEntity<>(
             service.createEmployee(employee),HttpStatus.CREATED
