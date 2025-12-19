@@ -11,7 +11,8 @@ public class EligibilityCheckRecord{
     private Long id;
     
    
-    @Column(nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColum
     private Long employeeId;
 
     @Column(nullable = false)
