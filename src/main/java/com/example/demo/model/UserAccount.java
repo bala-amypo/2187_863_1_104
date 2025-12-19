@@ -59,19 +59,19 @@ public class UserAccount{
       public String getEmail(){
     return email;
     }
-    public void setEmail(String mail){
-    this.fullName = fullName;
+    public void setEmail(String email){
+    this.email = email;
     }
-      public String getFullName(){
-    return fullName;
+      public String getPasswordHash(){
+    return passwordHash;
     }
-    public void setFullName(String fullName){
-    this.fullName = fullName;
+    public void setPasswordHash(String passwordHash){
+    this.passwordHash = passwordHash;
     }
     
     
-    public Boolean getIsEligible(){
-        return isEligible;
+    public Role getRole(){
+        return role;
     }
     public void setIsEligible(Boolean isEligible){
         this.isEligible= isEligible;
