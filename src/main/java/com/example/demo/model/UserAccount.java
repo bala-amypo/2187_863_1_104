@@ -73,25 +73,19 @@ public class UserAccount{
     public Role getRole(){
         return role;
     }
-    public void setIsEligible(Boolean isEligible){
-        this.isEligible= isEligible;
+    public void setRole(Role role){
+        this.role= role;
     }
-    public String getReason(){
-        return reason;
+    public Boolean getActive(){
+        return active;
     }
-    public void setReason(String reason){
-        this.reason = reason;
+    public void setActive(Boolean active){
+        this.active = active;
 
     }
-    public LocalDateTime getCheckedAt(){
-        return checkedAt;
-    }
-    public void setCheckedAt(LocalDateTime checkedAt){
-        this.checkedAt = checkedAt;
-    }
-
-    public boolean isEligible(){
-    return isEligible != null && isEligible;
+   
+    public boolean isActive(){
+    return active != null && ;
     }
 }
 
