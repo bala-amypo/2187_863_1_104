@@ -35,8 +35,7 @@ public class EmployeeProfileController {
     @GetMapping
     public 
     ResponseEntity<List<EmployeeProfile>>getAllEmployees(){
-        return 
-        ResponseEntity.ok<>(service.getAllEmployees()
+        return ResponseEntity.ok(service.getAllEmployees()
          );
     }
 
