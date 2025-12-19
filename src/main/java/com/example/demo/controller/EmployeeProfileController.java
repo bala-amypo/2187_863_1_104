@@ -51,8 +51,7 @@ public class EmployeeProfileController {
     public ResponseEntity<Map<String,
     String>>updateEmployeeStatus(
     @PathVariable Long id,
-    @RequestParam Boolean active)
-        {
+    @RequestParam Boolean active) {
      service.updateEmployeeStatus(id,active);
      return ResponseEntity.ok(Map.of("message","Employee status updated")
      );
@@ -62,8 +61,7 @@ public class EmployeeProfileController {
      @DeleteMapping("/{id}")
      public ResponseEntity<Void>
      deleteEmployee(
-        @PathVariable Long id
-     ){
+        @PathVariable Long id ){
         service.deleteEmployee(id);
         return ResponseEntity.noContent().build();
         }
