@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
+import jakarta.constraints.*;
 
 @Entity
 @Table(name="device_catalog_item")
@@ -10,19 +11,20 @@ public class DeviceCatalogItem{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-   
+    @NotBlank
     @Column(nullable = false,unique =true)
     private String deviceCode;
 
+    @NotBlank
     @Column(nullable = false)
     private String deviceType;
 
-    
+    @NotBlank
     @Column(nullable = false)
     private String model;
 
-
-    @Min(value = 1)
+    @NotBlank
+    @Min(value = 1,message = "maxAllowedPerEmployee")
     @Column(nullable = false)
     private Integer maxAllowedPerEmployee;
 
