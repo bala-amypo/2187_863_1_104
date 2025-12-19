@@ -43,9 +43,7 @@ public class UserAccount{
     public PolicyRule(String ruleCode,Integer maxDevicesAllowed){
         
     this.ruleCode = ruleCode;
-    this.email = email;
-    this.passwordHash= passwordHash;
-    this.role = role;
+    this.maxDevicesAllowed = maxDevicesAllowed;
     this.active = true;
     }
     
@@ -57,11 +55,11 @@ public class UserAccount{
     public void setId(Long id){
     this.id = id;
     }
-    public String getFullName(){
-    return fullName;
+    public String getRuleCode(){
+    return ruleCode;
     }
-    public void setFullName(String fullName){
-    this.fullName = fullName;
+    public void setRuleCode(String ruleCode){
+    this.ruleCode = ruleCode;
     }
       public String getEmail(){
     return email;
