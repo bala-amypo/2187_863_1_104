@@ -47,7 +47,7 @@ public class EmployeeProfile{
     this.fullName = fullName;
     this.email = email;
     this.department = department;
-    this.jobRole = jobRole;
+    this.jobRole = (jobRole == null )"STAFF" : jobRole;
     this.active = active;
     }
     public EmployeeProfile(String employeeId, String fullName, String email, String department,String jobRole){
