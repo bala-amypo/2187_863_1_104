@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="employees")
+@Table(name="employee_profile")
 public class EmployeeProfile{
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,7 +57,7 @@ public class EmployeeProfile{
     @PrePersist
     protected void onCreate(){
     this.createdAt = LocalDateTime.now();
-
+    }
     //Getters and Setters
 
     public Long getId(){
@@ -109,6 +109,7 @@ public class EmployeeProfile{
     return active != null && active;
     }
 }
+
 
 
     
