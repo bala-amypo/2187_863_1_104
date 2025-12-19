@@ -49,13 +49,12 @@ public class EmployeeProfile{
     this.department = department;
     this.jobRole = jobRole;
     this.active = active;
-    this.createdAt = LocalDateTime.now();
     }
     public EmployeeProfile(String employeeId, String fullName, String email, String department,String jobRole){
 
     this(employeeId,fullName,email,department,jobRole,true);
     }
-    
+
     //Getters and Setters
 
     public Long getId(){
