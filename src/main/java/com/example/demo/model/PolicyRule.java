@@ -80,11 +80,11 @@ public class PolicyRule{
     }
 
     public Integer getMaxDevicesAllowed(){
-    return maxDevicesAllowed();
+    return maxDevicesAllowed;
     }
 
      public void setMaxDevicesAllowed(Integer maxDevicesAllowed){
-    this.maxDevicesAllowed = maxDevicesAllowed();
+    this.maxDevicesAllowed = maxDevicesAllowed;
     }
     
 
