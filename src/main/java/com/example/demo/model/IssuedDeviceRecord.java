@@ -35,7 +35,7 @@ public class IssuedDeviceRecord{
         
     }
 
-    public IssuedDeviceRecord(Long employee, Long deviceItem){
+    public IssuedDeviceRecord(EmployeeProfile employee, DeviceCatdeviceItem){
     this.employee = employee;
     this.deviceItem = deviceItem;
     this.issuedDate = LocalDate.now();
@@ -59,8 +59,8 @@ public class IssuedDeviceRecord{
     public DeviceCatalogItem getDeviceItem(){
     return deviceItem;
     }
-    public void setDeviceItem(DeviceCatalogueItem deviceItemId){
-    this.deviceItemId = deviceItemId;
+    public void setDeviceItem(DeviceCatalogueItem deviceItem){
+    this.deviceItem = deviceItem;
     }
     
     public LocalDate getIssuedDate(){
