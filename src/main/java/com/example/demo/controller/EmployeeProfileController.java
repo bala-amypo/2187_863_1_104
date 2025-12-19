@@ -1,68 +1,66 @@
 package com.example.demo.controller;
+
+import com.example.demo.exception.BadRequestException;
 import com.example.demo.model.EmployeeProfile;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import org.springframework.http.HttpStatus;
+import com.example.demo.repository.EmployeeProfileRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/employees")
-@SecurityRequirement(name = "Bearer Authentication")
 public class EmployeeProfileController {
 
-    private final EmployeeProfileService service;
-    public EmployeeProfileController(EmployeeProfileService service) {
-        this.service = service;
+    private final EmployeeProfileRepository employeeProfileRepository;
+
+    public EmployeeProfileController(EmployeeProfileRepository employeeProfileRepository) {
+        this.employeeProfileRepository = employeeProfileRepository;
     }
-
-    @PostMapping
-    public ResponseEntity<EmployeeProfile>createEmployee(
-    @RequestBody EmployeeProfile employee){
-
-        return new ResponseEntity<>(
-            service.createEmployee(employee),
-            HttpStatus.CREATED
-        );
-    }
-
 
     @GetMapping
-    public 
-    ResponseEntity<List<EmployeeProfile>>getAllEmployees(){
-        return ResponseEntity.ok(service.getAllEmployees()
-         );
+    public List<EmployeeProfile> getAllEmployees() {
+        return employeeProfileRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EmployeeProfile>
-    getEmployeeById(
-        @PathVariable Long id){
-            return ResponseEntity.ok(service.getEmployeeById(id)
-            );
+    public ResponseEntity<EmployeeProfile> getEmployeeById(@PathVariable Long id) {
+        return employeeProfileRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public EmployeeProfile createEmployee(@RequestBody EmployeeProfile employee) {
+        if (employeeProfileRepository.findByEmployeeId(employee.getEmployeeId()).isPresent()) {
+            throw new BadRequestException("EmployeeId already exists");
         }
-
-    @PutMapping ("/{id}/status")
-    public ResponseEntity<Map<String,
-    String>>updateEmployeeStatus(
-    @PathVariable Long id,
-    @RequestParam Boolean active) {
-     service.updateEmployeeStatus(id,active);
-     return ResponseEntity.ok(Map.of("message","Employee status updated")
-     );
+        if (employeeProfileRepository.findByEmail(employee.getEmail()).isPresent()) {
+            throw new BadRequestException("Email already exists");
         }
+        return employeeProfileRepository.save(employee);
+    }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<EmployeeProfile> updateEmployee(@PathVariable Long id, @RequestBody EmployeeProfile employee) {
+        return employeeProfileRepository.findById(id)
+                .map(existingEmployee -> {
+                    existingEmployee.setFullName(employee.getFullName());
+                    existingEmployee.setDepartment(employee.getDepartment());
+                    existingEmployee.setJobRole(employee.getJobRole());
+                    existingEmployee.setActive(employee.getActive());
+                    return ResponseEntity.ok(employeeProfileRepository.save(existingEmployee));
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
 
-     @DeleteMapping("/{id}")
-     public ResponseEntity<Void>
-     deleteEmployee(
-        @PathVariable Long id ){
-        service.deleteEmployee(id);
-        return ResponseEntity.noContent().build();
-        }
-     }
-
-    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
+        return employeeProfileRepository.findById(id)
+                .map(employee -> {
+                    employeeProfileRepository.delete(employee);
+                    return ResponseEntity.ok().build();
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+}
