@@ -55,6 +55,7 @@ public class EmployeeProfile{
 
     this(employeeId,fullName,email,department,jobRole,true);
     }
+    
     //Getters and Setters
 
     public Long getId(){
