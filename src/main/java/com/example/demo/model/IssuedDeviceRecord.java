@@ -35,13 +35,19 @@ public class IssuedDeviceRecord{
         
     }
 
-    public IssuedDeviceRecord(Long employee, Long deviceItemId){
+    public IssuedDeviceRecord(Long employee, Long deviceItem){
     this.employee = employee;
     this.deviceItem = deviceItem;
     this.issuedDate = LocalDate.now();
     this.status = "ISSUED";
     }
-
+    //businness rule enforcement
+    public void markAsReturned(){
+    if(this.returnedDate != null){
+    throw new IllegalStateException("already returned");
+    }
+    this.returnedDate = LocalDate.now();
+    this.status = "RETURNED";
     //Getters and Setters
 
     public Long getId(){
