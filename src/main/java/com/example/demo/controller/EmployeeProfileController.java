@@ -20,6 +20,7 @@ public class EmployeeProfileController {
     public EmployeeProfileController(EmployeeProfileService service) {
         this.service = service;
     }
+
     @PostMapping
     public ResponseEntity<EmployeeProfile>
     createEmployee(
@@ -28,12 +29,16 @@ public class EmployeeProfileController {
             service.createEmployee(employee),HttpStatus.CREATED
         );
     }
+
+
     @GetMapping
     public 
     ResponseEntity<List<EmployeeProfile>>getAllEmployees(){
         return
-         ResponseEntity.ok<>(service.getAllEmployees());
+         ResponseEntity.ok<>(service.getAllEmployees()
+         );
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<EmployeeProfile>
     getEmployeeById(
@@ -52,6 +57,9 @@ public class EmployeeProfileController {
      service.updateEmployeeStatus(id,active);
      return ResponseEntity.ok(Map.of("message","Employee status updated")
      );
+        }
+
+        
      @DeleteMapping("/{id}")
      public ResponseEntity<Void>
      deleteEmployee(
@@ -62,4 +70,4 @@ public class EmployeeProfileController {
         }
      }
 
-    }
+    
