@@ -61,21 +61,21 @@ public class UserAccount{
     public void setRuleCode(String ruleCode){
     this.ruleCode = ruleCode;
     }
-      public String getEmail(){
-    return email;
+      public String getDescription(){
+    return description;
     }
-    public void setEmail(String email){
+    public void setDescription(String description){
     this.email = email;
     }
-      public String getPasswordHash(){
-    return passwordHash;
+      public String getAppliesToRole(){
+    return appliesToRole;
     }
-    public void setPasswordHash(String passwordHash){
-    this.passwordHash = passwordHash;
+    public void setAppliesToRole(String appliesToRole){
+    this.appliesToRole = appliesToRole;
     }
     
     
-    public Role getRole(){
+    public String get(){
         return role;
     }
     public void setRole(Role role){
