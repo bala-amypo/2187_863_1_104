@@ -11,13 +11,11 @@ public class EligibilityCheckRecord{
     private Long id;
     
    
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "employee_id")
-    private  EmployeeProfile employee;
-    
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "device_item_id")
-    private DeviceCatalogItem deviceItemId;
+    @Column(nullable = false)
+    private Long employeeId;
+
+    @Column(nullable = false)
+    private Long deviceItemId;
 
 
     @Column(nullable = false)
@@ -33,18 +31,15 @@ public class EligibilityCheckRecord{
     public EligibilityCheckRecord(){
         
     }
+    @p
 
-    public EligibilityCheckRecord( EmployeeProfile employeeId, DeviceCatalogue deviceItemId, String reason,Boolean isEligible){
+    public EligibilityCheckRecord(Long employeeId, Long deviceItemId, String reason,Boolean isEligible){
         
-    this.employeeId= employeeId;
+    this.employeeId = employeeId;
     this.deviceItemId = deviceItemId;
     this.isEligible = isEligible;
     this.reason = reason;
-
-    }
-    @PrePersist
-    protected void  onCreate(){
-        this.checkedAt = LocalDateTime.now();
+    this.checkedAt = LocalDateTime.now();
     }
     
     //Getters and Setters
@@ -55,7 +50,7 @@ public class EligibilityCheckRecord{
     public void setId(Long id){
     this.id = id;
     }
-    public EmployeeProfile getEmployeeId(){
+    public Long getEmployeeId(){
     return employeeId;
     }
     public void setEmployeeId(Long employeeId){
