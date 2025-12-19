@@ -22,7 +22,7 @@ public class DeviceCatalogItem{
     @Column(nullable = false)
     private String model;
 
-   
+    @NotNull
     @Min(value = 1,message = "maxAllowedPerEmployee must be at least 1")
     @Column(nullable = false)
     private Integer maxAllowedPerEmployee;
@@ -31,7 +31,6 @@ public class DeviceCatalogItem{
     @Column(nullable = false)
     private Boolean active = true;
 
-    
 
 
     public DeviceCatalogItem(){
