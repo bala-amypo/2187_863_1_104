@@ -25,16 +25,16 @@ public class EmployeeProfileController {
         return new ResponseEntity<>(
             service.createEmployee(employee),HttpStatus.CREATED
         );
-
+    }
     @GetMapping
-    public ResponseEntity<List>EmployeeProfile>>getAllEmployees(){
-        return ResponseEntity.ok<>(service.getAllEmployee());
+    public ResponseEntity<List<EmployeeProfile>>getAllEmployees(){
+        return ResponseEntity.ok<>(service.getAllEmployees());
         
     @GetMapping("/{id}")
     public ResponseEntity<EmployeeProfile>getEmployeeById(
         @PathVariable Long id)
         {
-            return ResponseEntity.ok<>(service.getEmployeeById(id));
+            return ResponseEntity.ok(service.getEmployeeById(id));
         }
 
     @PutMapping ("/{id}/status")
@@ -46,7 +46,7 @@ public class EmployeeProfileController {
      service.updateEmployeeStatus(id,active);
      return ResponseEntity.ok(Map.of("message","Employee status updated")
      );
-     @DeleteMappind("/{id}")
+     @DeleteMapping("/{id}")
      public ResponseEntity<Void>deleteEmployee(
         @PathVariable Long id
      ){
