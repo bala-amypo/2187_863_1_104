@@ -13,10 +13,10 @@ public class EligibilityCheckRecord{
    
     @ManyToOne(optional = false)
     @JoinColumn(name = "employee_id")
-    private  employeeId;
+    private  EmployeeProfile employee;
 
-    @Column(nullable = false)
-    private Long deviceItemId;
+    @JoinColumn(name = "device_item_id")
+    private DeviceCatalogItem deviceItemId;
 
 
     @Column(nullable = false)
@@ -39,8 +39,9 @@ public class EligibilityCheckRecord{
     this.deviceItemId = deviceItemId;
     this.isEligible = isEligible;
     this.reason = reason;
-    this.checkedAt = LocalDateTime.now();
+
     }
+    @Prepersi
     
     //Getters and Setters
 
