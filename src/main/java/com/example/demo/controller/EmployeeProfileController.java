@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 import com.example.demo.model.EmployeeProfile;
-import com.example.demo.service.EmployeeProfileService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,6 @@ import java.util.Map;
 public class EmployeeProfileController {
 
     private final EmployeeProfileService service;
-
     public EmployeeProfileController(EmployeeProfileService service) {
         this.service = service;
     }
