@@ -21,21 +21,22 @@ public class UserAccount{
     @Column
     private String description;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Role role;
     
-       public enum Role{
-    ADMIN,
-    IT_OPERATOR,
-    AUDITOR
-}
+    @Column
+    private String appliesToRole;
+    
+     
+    @Column
+    private String appliesToDepartment;
+
+     @Column(nullable = false )
+    private Integer maxDevicesAllowed ;
+
 
     @Column(nullable = false )
     private Boolean active = true;
 
-
-    public UserAccount(){
+    public PolicyRule(){
         
     }
   
