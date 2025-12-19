@@ -15,14 +15,14 @@ public class UserAccount{
     private String fullName;
 
     @Column(nullable = false)
-    private Long deviceItemId;
+    private String passwordHash;
 
 
     @Column(nullable = false,unique = true)
-    private Boolean isEligible;
+    private String email;
 
     @Column(nullable = false)
-    private String reason;
+    private String role;
 
     @Column(nullable = false , updatable = false)
     private LocalDateTime checkedAt;
