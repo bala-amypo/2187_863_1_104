@@ -1,8 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
-import jakarta.constraints.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name="device_catalog_item")
@@ -23,8 +22,8 @@ public class DeviceCatalogItem{
     @Column(nullable = false)
     private String model;
 
-    @NotBlank
-    @Min(value = 1,message = "maxAllowedPerEmployee")
+   
+    @Min(value = 1,message = "maxAllowedPerEmployee must be at least 1")
     @Column(nullable = false)
     private Integer maxAllowedPerEmployee;
 
@@ -44,7 +43,7 @@ public class DeviceCatalogItem{
     this.deviceCode = deviceCode;
     this.deviceType = deviceType;
     this.model = model;
-    setMaxAllowedPerEmployee(maxAllowedPerEmployee);
+    this.maxAllowedPerEmployee = maxAllowedPerEmployee;
     this.active = active;
 
     }
