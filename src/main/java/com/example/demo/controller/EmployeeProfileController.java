@@ -25,12 +25,10 @@ public class EmployeeProfileController {
             service.createEmployee(employee),HttpStatus.CREATED
         );
     @GetMapping
-    public ResponseEntity<List>EmployeeProfile>>getAllEmployees(
-    @RequestBody EmployeeProfile employee){
-        return new ResponseEntity<>(
-            service.createEmployee(employee),HttpStatus.CREATED
-        );
-        
+    public ResponseEntity<List>EmployeeProfile>>getAllEmployees(){
+        return ResponseEntity.ok<>(service.getAllEmployee());
+    @GetMapping("/{id}")
+    public
 
 
     }
