@@ -35,8 +35,7 @@ public class EmployeeProfileController {
     @GetMapping
     public 
     ResponseEntity<List<EmployeeProfile>>getAllEmployees(){
-        return
-         ResponseEntity.ok<>(service.getAllEmployees()
+        return ResponseEntity.ok<>(service.getAllEmployees()
          );
     }
 
@@ -44,8 +43,8 @@ public class EmployeeProfileController {
     public ResponseEntity<EmployeeProfile>
     getEmployeeById(
         @PathVariable Long id){
-            return
-             ResponseEntity.ok(service.getEmployeeById(id));
+            return ResponseEntity.ok(service.getEmployeeById(id)
+            );
         }
 
     @PutMapping ("/{id}/status")
