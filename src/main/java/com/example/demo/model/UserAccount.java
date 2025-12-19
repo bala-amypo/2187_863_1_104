@@ -24,6 +24,12 @@ public class UserAccount{
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
+    
+       public enum Role{
+    ADMIN,
+    IT_OPERATOR,
+    AUDITOR
+}
 
     @Column(nullable = false )
     private Boolean active = true;
@@ -87,11 +93,7 @@ public class UserAccount{
     public boolean isActive(){
     return active != null && active;
     }
-    public enum Role{
-    ADMIN,
-    IT_OPERATOR,
-    AUDITOR
-}
+ 
 }
 
 
