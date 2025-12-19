@@ -13,7 +13,7 @@ public class IssuedDeviceRecord{
     
     @ManyToOne(optional = false)
     @JoinColumn(name = "employee_id",nullable = false)
-    private EmployeeProfile employeeId;
+    private EmployeeProfile employee;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "device_item_id",nullable = false)
@@ -35,9 +35,9 @@ public class IssuedDeviceRecord{
         
     }
 
-    public IssuedDeviceRecord(Long employeeId, Long deviceItemId){
-    this.employeeId = employeeId;
-    this.deviceItemId = deviceItemId;
+    public IssuedDeviceRecord(Long employee, Long deviceItem){
+    this.employee = employee;
+    this.deviceItem = deviceItem;
     this.issuedDate = LocalDate.now();
     this.status = "ISSUED";
     }
@@ -46,7 +46,7 @@ public class IssuedDeviceRecord{
     if(this.returnedDate != null){
     throw new IllegalStateException("already returned");
     }
-    this.returnedDate = LocalDate.now();
+    this.returnedDate = LocalDate.now()
     this.status = "RETURNED";
     //Getters and Setters
 
@@ -56,7 +56,7 @@ public class IssuedDeviceRecord{
     public void setId(Long id){
     this.id = id;
     }
-    public EmployeeProfile getEmployeeId(){
+    public Long getEmployee(){
     return employeeId;
     }
     public void setEmployeeId(Long employeeId){
