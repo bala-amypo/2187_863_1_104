@@ -32,17 +32,14 @@ public class UserAccount{
     public UserAccount(){
         
     }
-    @PrePersist
-    protected void onCreate(){
-    this.checkedAt = LocalDateTime.now();
-}
-    public EligibilityCheckRecord(Long employeeId, Long deviceItemId, String reason,Boolean isEligible){
+  
+    public UserAccount(String fullName, String email, String passwordHash,Role role){
         
-    this.employeeId = employeeId;
-    this.deviceItemId = deviceItemId;
-    this.isEligible = isEligible;
-    this.reason = reason;
-    this.checkedAt = LocalDateTime.now();
+    this.fullName = fullName;
+    this.email = email;
+    this.passwordHash= passwordHash;
+    this.role = role;
+    this.active = true;
     }
     
     //Getters and Setters
