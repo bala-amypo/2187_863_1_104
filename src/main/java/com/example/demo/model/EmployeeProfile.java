@@ -56,7 +56,7 @@ public class EmployeeProfile{
     }
     @PrePersist
     protected void onCreate(){
-    this.createdAt = 
+    this.createdAt = LocalDateTime.now();
 
     //Getters and Setters
 
@@ -71,6 +71,12 @@ public class EmployeeProfile{
     }
     public void setEmployeeId(String employeeId){
     this.employeeId = employeeId;
+    }
+    public String getFullName(){
+    return fullName;
+    }
+    public void setFullName(String fullName){
+        this.fullName = fullName;
     }
     public String getEmail(){
     return email;
