@@ -11,12 +11,14 @@ public class IssuedDeviceRecord{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @ManyToOne
-    @Column(nullable = false)
-    private Long employeeId;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "employee_id",nullable = false)
+    private EmployeeProfile employee;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "device_item_id",nullable = false)
     @Column(nullable = false)
-    private Long deviceItemId;
+    private DeviceCatalogItem deviceItemId;
 
 
     @Column(nullable = false)
@@ -33,9 +35,9 @@ public class IssuedDeviceRecord{
         
     }
 
-    public IssuedDeviceRecord(Long employeeId, Long deviceItemId){
-    this.employeeId = employeeId;
-    this.deviceItemId = deviceItemId;
+    public IssuedDeviceRecord(Long employee, Long deviceItemId){
+    this.employee = employee;
+    this.deviceItem = deviceItem;
     this.issuedDate = LocalDate.now();
     this.status = "ISSUED";
     }
