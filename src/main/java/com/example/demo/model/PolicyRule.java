@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name="user_accounts")
-public class UserAccount{
+@Table(name="policy_rules")
+public class PolicyRule{
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -13,9 +13,6 @@ public class UserAccount{
    
     @Column(nullable = false,unique = true)
     private String ruleCode;
-
-    @Column
-    private String description;
 
 
     @Column
@@ -65,7 +62,7 @@ public class UserAccount{
     return description;
     }
     public void setDescription(String description){
-    this.email = email;
+    this.description =description;
     }
       public String getAppliesToRole(){
     return appliesToRole;
