@@ -42,7 +42,7 @@ public class UserAccount{
   
     public PolicyRule(String ruleCode,Integer maxDevicesAllowed){
         
-    this.fullName = fullName;
+    this.ruleCode = ruleCode;
     this.email = email;
     this.passwordHash= passwordHash;
     this.role = role;
