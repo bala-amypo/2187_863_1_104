@@ -34,15 +34,15 @@ public class EligibilityCheckRecord{
         
     }
 
-    public EligibilityCheckRecord( EmployeeProfile e, deviceItemId, String reason,Boolean isEligible){
+    public EligibilityCheckRecord( EmployeeProfile employee, DeviceCatalogue deviceItem, String reason,Boolean isEligible){
         
-    this.employeeId = employeeId;
-    this.deviceItemId = deviceItemId;
+    this.employee = employee;
+    this.deviceItem = deviceItem;
     this.isEligible = isEligible;
     this.reason = reason;
 
     }
-    @Prepersist
+    @PrePersist
     protected void  onCreate(){
         this.checkedAt = LocalDateTime.now();
     }
@@ -55,7 +55,7 @@ public class EligibilityCheckRecord{
     public void setId(Long id){
     this.id = id;
     }
-    public Long getEmployeeId(){
+    public EmployeeProfile getEmployeeId(){
     return employeeId;
     }
     public void setEmployeeId(Long employeeId){
