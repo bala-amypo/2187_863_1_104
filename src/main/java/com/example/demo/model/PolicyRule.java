@@ -81,13 +81,15 @@ public class UserAccount{
     public void setAppliesToDepartment(appliesToDepartment){
         this.appliesToDepartment= appliesToDepartment;
     }
-     public Interger(String ruleCode){
-    this.ruleCode = ruleCode;
-    }
-      public String getDescription(){
-    return description;
+
+    public Interger getMaxDevicesAllowed(){
+    return maxDevicesAllowed()
     }
 
+     public Interger setMaxDevicesAllowed(Integer maxDevicesAllowed){
+    this.maxDevicesAllowed = maxDevicesAllowed;
+    }
+    
 
     public Boolean getActive(){
         return active;
