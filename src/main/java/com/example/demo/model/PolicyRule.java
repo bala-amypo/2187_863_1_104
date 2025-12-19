@@ -75,12 +75,20 @@ public class UserAccount{
     }
     
     
-    public String get(){
-        return role;
+    public String getAppliesToDepartment(){
+        return appliesToDepartment;
     }
-    public void setRole(Role role){
-        this.role= role;
+    public void setAppliesToDepartment(appliesToDepartment){
+        this.appliesToDepartment= appliesToDepartment;
     }
+     public Interger(String ruleCode){
+    this.ruleCode = ruleCode;
+    }
+      public String getDescription(){
+    return description;
+    }
+
+
     public Boolean getActive(){
         return active;
     }
