@@ -50,18 +50,25 @@ public class UserAccount{
     public void setId(Long id){
     this.id = id;
     }
-    public Long getEmployeeId(){
-    return employeeId;
+    public String getFullName(){
+    return fullName;
     }
-    public void setEmployeeId(Long employeeId){
-    this.employeeId = employeeId;
+    public void setFullName(String fullName){
+    this.fullName = fullName;
     }
-    public Long getDeviceItemId(){
-    return deviceItemId;
+      public String getEmail(){
+    return email;
     }
-    public void setDeviceItemId(Long deviceItemId){
-    this.deviceItemId = deviceItemId;
+    public void setEmail(String mail){
+    this.fullName = fullName;
     }
+      public String getFullName(){
+    return fullName;
+    }
+    public void setFullName(String fullName){
+    this.fullName = fullName;
+    }
+    
     
     public Boolean getIsEligible(){
         return isEligible;
