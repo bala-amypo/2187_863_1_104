@@ -40,7 +40,7 @@ public class UserAccount{
         
     }
   
-    public PolicyRule(String , String email, String passwordHash,Role role){
+    public PolicyRule(String ruleCode,Integer maxDevicesAllowed){
         
     this.fullName = fullName;
     this.email = email;
