@@ -36,9 +36,14 @@ public class EmployeeProfileController {
     @PutMapping ("/{id}/status")
     public ResponseEntity<Map<String,String>>
     updateEmpployeeStatus(
-    @PathVariable Long id)
+    @PathVariable Long id,
+    @RequestParam Boolean active)
         {
-    )
+     service.updateEmployeeStatus(id,active);
+     return ResponseEntity.ok(Map.of("message","Employee status updated")
+     );
+     @DeleteMappind("/{id}")
+     
         
     
 
