@@ -12,8 +12,8 @@ public class EligibilityCheckRecord{
     
    
     @ManyToOne(optional = false)
-    @JoinColum
-    private Long employeeId;
+    @JoinColumn(name = "employee_id")
+    private  employeeId;
 
     @Column(nullable = false)
     private Long deviceItemId;
