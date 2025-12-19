@@ -34,10 +34,10 @@ public class EligibilityCheckRecord{
         
     }
 
-    public EligibilityCheckRecord( EmployeeProfile employee, DeviceCatalogue deviceItem, String reason,Boolean isEligible){
+    public EligibilityCheckRecord( EmployeeProfile employeeId, DeviceCatalogue deviceItemId, String reason,Boolean isEligible){
         
-    this.employee = employee;
-    this.deviceItem = deviceItem;
+    this.employeeId= employeeId;
+    this.deviceItemId = deviceItemId;
     this.isEligible = isEligible;
     this.reason = reason;
 
