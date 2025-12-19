@@ -13,7 +13,7 @@ public class IssuedDeviceRecord{
     
     @ManyToOne(optional = false)
     @JoinColumn(name = "employee_id",nullable = false)
-    private EmployeeProfile employee;
+    private EmployeeProfile employeeId;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "device_item_id",nullable = false)
@@ -35,9 +35,9 @@ public class IssuedDeviceRecord{
         
     }
 
-    public IssuedDeviceRecord(Long employee, Long deviceItem){
-    this.employee = employee;
-    this.deviceItem = deviceItem;
+    public IssuedDeviceRecord(Long employeeId, Long deviceItemId){
+    this.employeeId = employeeId;
+    this.deviceItemId = deviceItemId;
     this.issuedDate = LocalDate.now();
     this.status = "ISSUED";
     }
@@ -56,7 +56,7 @@ public class IssuedDeviceRecord{
     public void setId(Long id){
     this.id = id;
     }
-    public Long getEmployeeId(){
+    public EmployeeProfile getEmployeeId(){
     return employeeId;
     }
     public void setEmployeeId(Long employeeId){
