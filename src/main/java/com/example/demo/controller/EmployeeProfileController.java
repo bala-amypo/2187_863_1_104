@@ -1,4 +1,5 @@
 package com.example.demo.controller;
+import com.example.demo.model.EmployeeProfile;
 import com.example.demo.service.EmployeeProfileService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.HttpStatus;
@@ -52,7 +53,8 @@ public class EmployeeProfileController {
      return ResponseEntity.ok(Map.of("message","Employee status updated")
      );
      @DeleteMapping("/{id}")
-     public ResponseEntity<Void>deleteEmployee(
+     public ResponseEntity<Void>
+     deleteEmployee(
         @PathVariable Long id
      ){
         service.deleteEmployee(id);
