@@ -42,8 +42,7 @@ public class EmployeeProfileController {
     @GetMapping("/{id}")
     public ResponseEntity<EmployeeProfile>
     getEmployeeById(
-        @PathVariable Long id)
-        {
+        @PathVariable Long id){
             return
              ResponseEntity.ok(service.getEmployeeById(id));
         }
@@ -59,7 +58,7 @@ public class EmployeeProfileController {
      );
         }
 
-        
+
      @DeleteMapping("/{id}")
      public ResponseEntity<Void>
      deleteEmployee(
