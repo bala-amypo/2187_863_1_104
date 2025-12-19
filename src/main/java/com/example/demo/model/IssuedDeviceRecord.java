@@ -35,7 +35,7 @@ public class IssuedDeviceRecord{
         
     }
 
-    public IssuedDeviceRecord(EmployeeProfile employee, DeviceCatdeviceItem){
+    public IssuedDeviceRecord(EmployeeProfile employee, DeviceCatalogItem deviceItem){
     this.employee = employee;
     this.deviceItem = deviceItem;
     this.issuedDate = LocalDate.now();
@@ -53,13 +53,13 @@ public class IssuedDeviceRecord{
     public EmployeeProfile getEmployee(){
     return employee;
     }
-    public void setEmployees(EmployeeProfile employee){
+    public void setEmployee(EmployeeProfile employee){
     this.employee = employee;
     }
     public DeviceCatalogItem getDeviceItem(){
     return deviceItem;
     }
-    public void setDeviceItem(DeviceCatalogueItem deviceItem){
+    public void setDeviceItem(DeviceCatalogItem deviceItem){
     this.deviceItem = deviceItem;
     }
     
@@ -74,7 +74,7 @@ public class IssuedDeviceRecord{
     }
     public void setReturnedDate(LocalDate returnedDate){
         if(this.returnedDate != null){
-        throw new RunTimeException("already returned");
+        throw new RuntimeException("already returned");
         }
         this.returnedDate = returnedDate;
         this.status = "RETURNED";
