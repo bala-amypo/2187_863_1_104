@@ -75,15 +75,15 @@ public class PolicyRule{
     public String getAppliesToDepartment(){
         return appliesToDepartment;
     }
-    public void setAppliesToDepartment(appliesToDepartment){
+    public void setAppliesToDepartment(String appliesToDepartment){
         this.appliesToDepartment= appliesToDepartment;
     }
 
-    public Interger getMaxDevicesAllowed(){
-    return maxDevicesAllowed()
+    public Integer getMaxDevicesAllowed(){
+    setmaxDevicesAllowed(Integer maxDevicesAllowed)
     }
 
-     public Interger setMaxDevicesAllowed(Integer maxDevicesAllowed){
+     public Integer setMaxDevicesAllowed(Integer maxDevicesAllowed){
     this.maxDevicesAllowed = maxDevicesAllowed;
     }
     
