@@ -85,8 +85,13 @@ public class UserAccount{
     }
    
     public boolean isActive(){
-    return active != null && ;
+    return active != null && active;
     }
+    public enum Role{
+    ADMIN,
+    IT_OPERATOR,
+    AUDITOR
+}
 }
 
 
