@@ -35,17 +35,41 @@ public class IssuedDeviceRecord {
         this.status = "ISSUED";
     }
     
-    // All getters and setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    public EmployeeProfile getEmployee() { return employee; }
-    public void setEmployee(EmployeeProfile employee) { this.employee = employee; }
-    public DeviceCatalogItem getDeviceItem() { return deviceItem; }
-    public void setDeviceItem(DeviceCatalogItem deviceItem) { this.deviceItem = deviceItem; }
-    public LocalDate getIssuedDate() { return issuedDate; }
-    public void setIssuedDate(LocalDate issuedDate) { this.issuedDate = issuedDate; }
-    public LocalDate getReturnedDate() { return returnedDate; }
-    public void setReturnedDate(LocalDate returnedDate) { this.returnedDate = returnedDate; }
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    //  getters and setters
+    public Long getId() { 
+     return id;
+      }
+    public void setId(Long id) { 
+        this.id = id;
+         }
+    public EmployeeProfile getEmployee() { 
+    return employee;
+     }
+    public void setEmployee(EmployeeProfile employee) { 
+    this.employee = employee; 
+    }
+    public DeviceCatalogItem getDeviceItem() { 
+    return deviceItem;
+     }
+    public void setDeviceItem(DeviceCatalogItem deviceItem) {
+     this.deviceItem = deviceItem;
+      }
+    public LocalDate getIssuedDate() {
+     return issuedDate;
+      }
+    public void setIssuedDate(LocalDate issuedDate) {
+     this.issuedDate = issuedDate;
+      }
+    public LocalDate getReturnedDate() { 
+        return returnedDate; 
+    }
+    public void setReturnedDate(LocalDate returnedDate) { 
+    this.returnedDate = returnedDate; 
+    }
+    public String getStatus() {
+     return status;
+      }
+    public void setStatus(String status) {
+     this.status = status;
+      }
 }
