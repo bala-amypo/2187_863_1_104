@@ -2,8 +2,10 @@ package com.example.demo.controller;
 
 import com.example.demo.model.DeviceCatalogItem;
 import com.example.demo.service.DeviceCatalogService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -12,55 +14,34 @@ public class DeviceCatalogController {
 
     private final DeviceCatalogService deviceCatalogService;
 
+    // Constructor Injection 
     public DeviceCatalogController(DeviceCatalogService deviceCatalogService) {
         this.deviceCatalogService = deviceCatalogService;
     }
 
-    @GetMapping
-    public List<DeviceCatalogItem> getAllDevices() {
-        return deviceCatalogService.getAllItems();
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<DeviceCatalogItem> getDeviceById(@PathVariable Long id) {
-        try {
-            DeviceCatalogItem device = deviceCatalogService.getAllItems().stream()
-                    .filter(d -> d.getId().equals(id))
-                    .findFirst()
-                    .orElse(null);
-            return device != null ? ResponseEntity.ok(device) : ResponseEntity.notFound().build();
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
+    // POST /api/devices
     @PostMapping
-    public ResponseEntity<DeviceCatalogItem> createDevice(@RequestBody DeviceCatalogItem device) {
-        try {
-            DeviceCatalogItem created = deviceCatalogService.createItem(device);
-            return ResponseEntity.ok(created);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+    public ResponseEntity<DeviceCatalogItem> createDevice(
+            @RequestBody DeviceCatalogItem item) {
+
+        DeviceCatalogItem createdItem = deviceCatalogService.createItem(item);
+        return new ResponseEntity<>(createdItem, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<DeviceCatalogItem> updateDevice(@PathVariable Long id, @RequestBody DeviceCatalogItem device) {
-        try {
-            DeviceCatalogItem updated = deviceCatalogService.updateDevice(id, device);
-            return ResponseEntity.ok(updated);
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
+    // GET /api/devices
+    @GetMapping
+    public ResponseEntity<List<DeviceCatalogItem>> getAllDevices() {
+        return ResponseEntity.ok(deviceCatalogService.getAllItems());
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteDevice(@PathVariable Long id) {
-        try {
-            deviceCatalogService.updateActiveStatus(id, false);
-            return ResponseEntity.ok().build();
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
+    // PUT /api/devices/{id}/active?active=true|false
+    @PutMapping("/{id}/active")
+    public ResponseEntity<DeviceCatalogItem> updateActiveStatus(
+            @PathVariable Long id,
+            @RequestParam boolean active) {
+
+        DeviceCatalogItem updatedItem =
+                deviceCatalogService.updateActiveStatus(id, active);
+        return ResponseEntity.ok(updatedItem);
     }
 }
