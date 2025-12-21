@@ -45,4 +45,14 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileService {
         employee.setActive(active);
         return employeeProfileRepository.save(employee);
     }
+
+    @Override
+    public EmployeeProfile updateEmployee(Long id, EmployeeProfile employee) {
+        EmployeeProfile existingEmployee = getEmployeeById(id);
+        if (employee.getFullName() != null) existingEmployee.setFullName(employee.getFullName());
+        if (employee.getDepartment() != null) existingEmployee.setDepartment(employee.getDepartment());
+        if (employee.getJobRole() != null) existingEmployee.setJobRole(employee.getJobRole());
+        if (employee.getActive() != null) existingEmployee.setActive(employee.getActive());
+        return employeeProfileRepository.save(existingEmployee);
+    }
 }
