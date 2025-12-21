@@ -45,10 +45,18 @@ public class DeviceCatalogServiceImpl implements DeviceCatalogService {
     public DeviceCatalogItem updateDevice(Long id, DeviceCatalogItem device) {
         DeviceCatalogItem existingDevice = deviceCatalogItemRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Device not found"));
-        if (device.getDeviceType() != null) existingDevice.setDeviceType(device.getDeviceType());
-        if (device.getModel() != null) existingDevice.setModel(device.getModel());
-        if (device.getMaxAllowedPerEmployee() != null) existingDevice.setMaxAllowedPerEmployee(device.getMaxAllowedPerEmployee());
-        if (device.getActive() != null) existingDevice.setActive(device.getActive());
+        if (device.getDeviceType() != null) 
+        existingDevice.setDeviceType(device.getDeviceType());
+
+        if (device.getModel() != null) 
+        existingDevice.setModel(device.getModel());
+
+        if (device.getMaxAllowedPerEmployee() != null)
+         existingDevice.setMaxAllowedPerEmployee(device.getMaxAllowedPerEmployee());
+
+        if (device.getActive() != null) 
+        existingDevice.setActive(device.getActive());
+        
         return deviceCatalogItemRepository.save(existingDevice);
     }
 }
