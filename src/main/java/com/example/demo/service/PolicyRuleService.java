@@ -7,4 +7,6 @@ public interface PolicyRuleService {
     PolicyRule createRule(PolicyRule rule);
     List<PolicyRule> getAllRules();
     List<PolicyRule> getActiveRules();
+    PolicyRule updateRule(Long id, PolicyRule rule);
+    PolicyRule getRuleById(Long id);
 }
