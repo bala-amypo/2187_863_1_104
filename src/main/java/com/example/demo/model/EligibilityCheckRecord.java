@@ -42,15 +42,41 @@ public class EligibilityCheckRecord {
     }
     
     // All getters and setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    public EmployeeProfile getEmployee() { return employee; }
-    public void setEmployee(EmployeeProfile employee) { this.employee = employee; }
-    public DeviceCatalogItem getDeviceItem() { return deviceItem; }
-    public void setDeviceItem(DeviceCatalogItem deviceItem) { this.deviceItem = deviceItem; }
-    public Boolean getIsEligible() { return isEligible; }
-    public void setIsEligible(Boolean isEligible) { this.isEligible = isEligible; }
-    public String getReason() { return reason; }
+    public Long getId() { 
+    return id; 
+    }
+
+    public void setId(Long id) { 
+    this.id = id; 
+    }
+
+    public EmployeeProfile getEmployee() { 
+    return employee; 
+    }
+
+    public void setEmployee(EmployeeProfile employee) { 
+    this.employee = employee; 
+    }
+
+    public DeviceCatalogItem getDeviceItem() { 
+    return deviceItem;
+     }
+
+    public void setDeviceItem(DeviceCatalogItem deviceItem) {
+     this.deviceItem = deviceItem;
+      }
+    public Boolean getIsEligible() { 
+    return isEligible; 
+    }
+
+    public void setIsEligible(Boolean isEligible) { 
+    this.isEligible = isEligible;
+     }
+
+    public String getReason() { 
+    return reason; 
+    }
+    
     public void setReason(String reason) { this.reason = reason; }
     public LocalDateTime getCheckedAt() { return checkedAt; }
     public void setCheckedAt(LocalDateTime checkedAt) { this.checkedAt = checkedAt; }

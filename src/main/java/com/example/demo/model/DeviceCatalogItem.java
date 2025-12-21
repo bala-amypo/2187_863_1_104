@@ -57,10 +57,27 @@ public class DeviceCatalogItem {
     public void setDeviceType(String deviceType) { 
         this.deviceType = deviceType; 
         }
-    public String getModel() { return model; }
-    public void setModel(String model) { this.model = model; }
-    public Integer getMaxAllowedPerEmployee() { return maxAllowedPerEmployee; }
-    public void setMaxAllowedPerEmployee(Integer maxAllowedPerEmployee) { this.maxAllowedPerEmployee = maxAllowedPerEmployee; }
-    public Boolean getActive() { return active; }
-    public void setActive(Boolean active) { this.active = active; }
+
+    public String getModel() { 
+        return model;
+         }
+
+    public void setModel(String model) { 
+        this.model = model; 
+        }
+    public Integer getMaxAllowedPerEmployee() { 
+        return maxAllowedPerEmployee; 
+        }
+
+    public void setMaxAllowedPerEmployee(Integer maxAllowedPerEmployee) { 
+        this.maxAllowedPerEmployee = maxAllowedPerEmployee;
+         }
+
+    public Boolean getActive() {
+         return active;
+          }
+
+    public void setActive(Boolean active) { 
+        this.active = active; 
+        }
 }
