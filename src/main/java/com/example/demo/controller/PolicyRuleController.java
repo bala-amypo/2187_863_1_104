@@ -1,63 +1,78 @@
 package com.example.demo.controller;
 
-import com.example.demo.exception.BadRequestException;
-import com.example.demo.model.PolicyRule;
-import com.example.demo.repository.PolicyRuleRepository;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.model.PolicyRule;
+import com.example.demo.service.PolicyRuleService;
 
 @RestController
 @RequestMapping("/api/policy-rules")
 public class PolicyRuleController {
-    
-    private final PolicyRuleRepository policyRuleRepository;
-    
-    public PolicyRuleController(PolicyRuleRepository policyRuleRepository) {
-        this.policyRuleRepository = policyRuleRepository;
+
+    private final PolicyRuleService policyRuleService;
+
+    public PolicyRuleController(PolicyRuleService policyRuleService) {
+        this.policyRuleService = policyRuleService;
     }
-    
+
     @GetMapping
     public List<PolicyRule> getAllPolicyRules() {
-        return policyRuleRepository.findAll();
+        return policyRuleService.getAllRules();
     }
-    
+
     @GetMapping("/{id}")
     public ResponseEntity<PolicyRule> getPolicyRuleById(@PathVariable Long id) {
-        return policyRuleRepository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        try {
+            PolicyRule rule = policyRuleService.getAllRules().stream()
+                    .filter(r -> r.getId().equals(id))
+                    .findFirst()
+                    .orElse(null);
+            return rule != null ? ResponseEntity.ok(rule) : ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
-    
+
     @PostMapping
     public PolicyRule createPolicyRule(@RequestBody PolicyRule policyRule) {
-        if (policyRuleRepository.findByRuleCode(policyRule.getRuleCode()).isPresent()) {
-            throw new BadRequestException("Rule code already exists");
-        }
-        return policyRuleRepository.save(policyRule);
+        return policyRuleService.createRule(policyRule);
     }
-    
+
     @PutMapping("/{id}")
     public ResponseEntity<PolicyRule> updatePolicyRule(@PathVariable Long id, @RequestBody PolicyRule policyRule) {
-        return policyRuleRepository.findById(id)
-                .map(existingRule -> {
-                    existingRule.setDescription(policyRule.getDescription());
-                    existingRule.setAppliesToRole(policyRule.getAppliesToRole());
-                    existingRule.setAppliesToDepartment(policyRule.getAppliesToDepartment());
-                    existingRule.setMaxDevicesAllowed(policyRule.getMaxDevicesAllowed());
-                    existingRule.setActive(policyRule.getActive());
-                    return ResponseEntity.ok(policyRuleRepository.save(existingRule));
-                })
-                .orElse(ResponseEntity.notFound().build());
+        try {
+            PolicyRule updatedRule = policyRuleService.updateRule(id, policyRule);
+            return ResponseEntity.ok(updatedRule);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
-    
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletePolicyRule(@PathVariable Long id) {
-        return policyRuleRepository.findById(id)
-                .map(rule -> {
-                    policyRuleRepository.delete(rule);
-                    return ResponseEntity.ok().build();
-                })
-                .orElse(ResponseEntity.notFound().build());
+        try {
+            PolicyRule existingRule = policyRuleService.getAllRules().stream()
+                    .filter(r -> r.getId().equals(id))
+                    .findFirst()
+                    .orElse(null);
+            if (existingRule != null) {
+                existingRule.setActive(false);
+                policyRuleService.updateRule(id, existingRule);
+                return ResponseEntity.ok().build();
+            }
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

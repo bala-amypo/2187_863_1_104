@@ -1,8 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.exception.BadRequestException;
 import com.example.demo.model.EmployeeProfile;
-import com.example.demo.repository.EmployeeProfileRepository;
+import com.example.demo.service.EmployeeProfileService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -10,56 +9,55 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeProfileController {
-    
-    private final EmployeeProfileRepository employeeProfileRepository;
-    
-    public EmployeeProfileController(EmployeeProfileRepository employeeProfileRepository) {
-        this.employeeProfileRepository = employeeProfileRepository;
+
+    private final EmployeeProfileService employeeProfileService;
+
+    public EmployeeProfileController(EmployeeProfileService employeeProfileService) {
+        this.employeeProfileService = employeeProfileService;
     }
-    
+
     @GetMapping
     public List<EmployeeProfile> getAllEmployees() {
-        return employeeProfileRepository.findAll();
+        return employeeProfileService.getAllEmployees();
     }
-    
+
     @GetMapping("/{id}")
     public ResponseEntity<EmployeeProfile> getEmployeeById(@PathVariable Long id) {
-        return employeeProfileRepository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        try {
+            EmployeeProfile employee = employeeProfileService.getEmployeeById(id);
+            return ResponseEntity.ok(employee);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
-    
+
     @PostMapping
-    public EmployeeProfile createEmployee(@RequestBody EmployeeProfile employee) {
-        if (employeeProfileRepository.findByEmployeeId(employee.getEmployeeId()).isPresent()) {
-            throw new BadRequestException("EmployeeId already exists");
+    public ResponseEntity<EmployeeProfile> createEmployee(@RequestBody EmployeeProfile employee) {
+        try {
+            EmployeeProfile created = employeeProfileService.createEmployee(employee);
+            return ResponseEntity.ok(created);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
         }
-        if (employeeProfileRepository.findByEmail(employee.getEmail()).isPresent()) {
-            throw new BadRequestException("Email already exists");
-        }
-        return employeeProfileRepository.save(employee);
     }
-    
+
     @PutMapping("/{id}")
     public ResponseEntity<EmployeeProfile> updateEmployee(@PathVariable Long id, @RequestBody EmployeeProfile employee) {
-        return employeeProfileRepository.findById(id)
-                .map(existingEmployee -> {
-                    existingEmployee.setFullName(employee.getFullName());
-                    existingEmployee.setDepartment(employee.getDepartment());
-                    existingEmployee.setJobRole(employee.getJobRole());
-                    existingEmployee.setActive(employee.getActive());
-                    return ResponseEntity.ok(employeeProfileRepository.save(existingEmployee));
-                })
-                .orElse(ResponseEntity.notFound().build());
+        try {
+            EmployeeProfile updated = employeeProfileService.updateEmployee(id, employee);
+            return ResponseEntity.ok(updated);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
-    
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
-        return employeeProfileRepository.findById(id)
-                .map(employee -> {
-                    employeeProfileRepository.delete(employee);
-                    return ResponseEntity.ok().build();
-                })
-                .orElse(ResponseEntity.notFound().build());
+        try {
+            employeeProfileService.updateEmployeeStatus(id, false);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
