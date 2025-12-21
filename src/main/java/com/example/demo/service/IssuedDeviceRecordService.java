@@ -1,11 +1,10 @@
 package com.example.demo.service;
 
-import com.example.demo.model.PolicyRule;
+import com.example.demo.model.IssuedDeviceRecord;
 import java.util.List;
 
-public interface PolicyRuleService {
-    PolicyRule createRule(PolicyRule rule);
-    List<PolicyRule> getAllRules();
-    List<PolicyRule> getActiveRules();
-    PolicyRule updateRule(Long id, PolicyRule rule);
+public interface IssuedDeviceRecordService {
+    IssuedDeviceRecord issueDevice(IssuedDeviceRecord record);
+    IssuedDeviceRecord returnDevice(Long recordId);
+    List<IssuedDeviceRecord> getIssuedDevicesByEmployee(Long employeeId);
 }
