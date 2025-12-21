@@ -76,8 +76,16 @@ public class EligibilityCheckRecord {
     public String getReason() { 
     return reason; 
     }
-    
-    public void setReason(String reason) { this.reason = reason; }
-    public LocalDateTime getCheckedAt() { return checkedAt; }
-    public void setCheckedAt(LocalDateTime checkedAt) { this.checkedAt = checkedAt; }
+
+    public void setReason(String reason) {
+     this.reason = reason; 
+     }
+
+    public LocalDateTime getCheckedAt() { 
+    return checkedAt; 
+    }
+
+    public void setCheckedAt(LocalDateTime checkedAt) { 
+    this.checkedAt = checkedAt;
+     }
 }
