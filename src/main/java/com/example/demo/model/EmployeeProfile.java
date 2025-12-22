@@ -36,7 +36,7 @@ public class EmployeeProfile {
         createdAt = LocalDateTime.now();
     }
     
-    // Constructors, getters, setters
+    //  getters, setters
     public EmployeeProfile() {}
     
     public EmployeeProfile(String employeeId, String fullName, String email, String department, String jobRole) {
