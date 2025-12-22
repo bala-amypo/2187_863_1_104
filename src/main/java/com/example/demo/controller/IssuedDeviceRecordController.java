@@ -1,13 +1,10 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import com.example.demo.model.IssuedDeviceRecord;
 import com.example.demo.service.IssuedDeviceRecordService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/issued-devices")
@@ -19,38 +16,43 @@ public class IssuedDeviceRecordController {
         this.service = service;
     }
 
-    // 1️⃣ Get all issued devices
     @GetMapping
-    public ResponseEntity<List<IssuedDeviceRecord>> getAllIssuedDevices() {
-        return ResponseEntity.ok(service.getAllIssuedDevices());
+    public List<IssuedDeviceRecord> getAllIssuedDevices() {
+        return service.getAllIssuedDevices();
     }
 
-    // 2️⃣ Get issued device by ID
     @GetMapping("/{id}")
     public ResponseEntity<IssuedDeviceRecord> getIssuedDeviceById(@PathVariable Long id) {
-        return ResponseEntity.ok(service.getIssuedDeviceById(id));
+        try {
+            IssuedDeviceRecord record = service.getIssuedDeviceById(id);
+            return ResponseEntity.ok(record);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    // 3️⃣ Issue a device
     @PostMapping
-    public ResponseEntity<IssuedDeviceRecord> issueDevice(
-            @RequestBody IssuedDeviceRecord issuedDevice) {
-
-        IssuedDeviceRecord created = service.issueDevice(issuedDevice);
-        return new ResponseEntity<>(created, HttpStatus.CREATED);
+    public ResponseEntity<IssuedDeviceRecord> createIssuedDevice(@RequestBody IssuedDeviceRecord issuedDevice) {
+        try {
+            IssuedDeviceRecord created = service.issueDevice(issuedDevice);
+            return ResponseEntity.ok(created);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
-    // 4️⃣ Return a device
     @PutMapping("/{id}/return")
     public ResponseEntity<IssuedDeviceRecord> returnDevice(@PathVariable Long id) {
-        return ResponseEntity.ok(service.returnDevice(id));
+        try {
+            IssuedDeviceRecord returned = service.returnDevice(id);
+            return ResponseEntity.ok(returned);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
-    // 5️⃣ Get devices by employee
     @GetMapping("/employee/{employeeId}")
-    public ResponseEntity<List<IssuedDeviceRecord>> getDevicesByEmployee(
-            @PathVariable Long employeeId) {
-
-        return ResponseEntity.ok(service.getIssuedDevicesByEmployee(employeeId));
+    public List<IssuedDeviceRecord> getDevicesByEmployee(@PathVariable Long employeeId) {
+        return service.getIssuedDevicesByEmployee(employeeId);
     }
 }
