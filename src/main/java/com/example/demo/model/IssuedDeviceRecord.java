@@ -87,4 +87,20 @@ public class IssuedDeviceRecord {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public void setEmployeeId(Long employeeId) {
+        // This method is needed for tests but we use the relationship
+        if (this.employee == null) {
+            this.employee = new EmployeeProfile();
+        }
+        this.employee.setId(employeeId);
+    }
+
+    public void setDeviceItemId(Long deviceItemId) {
+        // This method is needed for tests but we use the relationship
+        if (this.deviceItem == null) {
+            this.deviceItem = new DeviceCatalogItem();
+        }
+        this.deviceItem.setId(deviceItemId);
+    }
 }
