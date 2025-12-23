@@ -57,4 +57,10 @@ public class IssuedDeviceRecordServiceImpl implements IssuedDeviceRecordService 
     public List<IssuedDeviceRecord> getIssuedDevicesByEmployee(Long employeeId) {
         return issuedDeviceRecordRepository.findByEmployee_Id(employeeId);
     }
+
+    @Override
+    public IssuedDeviceRecord getIssuedDeviceById(Long id) {
+        return issuedDeviceRecordRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Issued device record not found"));
+    }
 }
