@@ -11,9 +11,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,16 +19,13 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Authentication Endpoints")
 public class AuthController {
 
-    private final AuthenticationManager authenticationManager;
     private final UserAccountRepository userAccountRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider tokenProvider;
 
-    public AuthController(AuthenticationManager authenticationManager,
-                         UserAccountRepository userAccountRepository,
+    public AuthController(UserAccountRepository userAccountRepository,
                          PasswordEncoder passwordEncoder,
                          JwtTokenProvider tokenProvider) {
-        this.authenticationManager = authenticationManager;
         this.userAccountRepository = userAccountRepository;
         this.passwordEncoder = passwordEncoder;
         this.tokenProvider = tokenProvider;
@@ -58,12 +52,14 @@ public class AuthController {
     @PostMapping("/login")
     @Operation(summary = "Login user")
     public ResponseEntity<?> login(@Valid @RequestBody AuthRequest request) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
-        );
-
-        String jwt = tokenProvider.generateToken(authentication);
-        UserAccount user = userAccountRepository.findByEmail(request.getEmail()).orElseThrow();
+        UserAccount user = userAccountRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new BadRequestException("Invalid credentials"));
+        
+        if (!passwordEncoder.matches(request.getPassword(), user.getPasswordHash())) {
+            throw new BadRequestException("Invalid credentials");
+        }
+        
+        String jwt = tokenProvider.generateToken(user.getEmail());
         return ResponseEntity.ok(new AuthResponse(jwt, user.getId(), user.getEmail(), user.getRole().toString()));
     }
 }
