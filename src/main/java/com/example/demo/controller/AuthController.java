@@ -7,11 +7,11 @@ import com.example.demo.exception.BadRequestException;
 import com.example.demo.model.UserAccount;
 import com.example.demo.repository.UserAccountRepository;
 import com.example.demo.security.JwtTokenProvider;
+import com.example.demo.config.SecurityConfig.SimplePasswordEncoder;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final UserAccountRepository userAccountRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final SimplePasswordEncoder passwordEncoder;
     private final JwtTokenProvider tokenProvider;
 
     public AuthController(UserAccountRepository userAccountRepository,
-                         PasswordEncoder passwordEncoder,
+                         SimplePasswordEncoder passwordEncoder,
                          JwtTokenProvider tokenProvider) {
         this.userAccountRepository = userAccountRepository;
         this.passwordEncoder = passwordEncoder;
