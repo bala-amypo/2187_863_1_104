@@ -11,11 +11,6 @@ public class SecurityConfig {
         return new SimplePasswordEncoder();
     }
 
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     public static class SimplePasswordEncoder {
         public String encode(String password) {
             return "encoded_" + password;
@@ -23,16 +18,6 @@ public class SecurityConfig {
         
         public boolean matches(String rawPassword, String encodedPassword) {
             return encodedPassword.equals("encoded_" + rawPassword);
-        }
-    }
-
-    public static class BCryptPasswordEncoder {
-        public String encode(String password) {
-            return "bcrypt_" + password;
-        }
-        
-        public boolean matches(String rawPassword, String encodedPassword) {
-            return encodedPassword.equals("bcrypt_" + rawPassword);
         }
     }
 }
