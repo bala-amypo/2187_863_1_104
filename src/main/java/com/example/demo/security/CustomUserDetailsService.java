@@ -2,17 +2,10 @@ package com.example.demo.security;
 
 import com.example.demo.model.UserAccount;
 import com.example.demo.repository.UserAccountRepository;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService {
 
     private final UserAccountRepository userAccountRepository;
 
@@ -20,19 +13,14 @@ public class CustomUserDetailsService implements UserDetailsService {
         this.userAccountRepository = userAccountRepository;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserAccount loadUserByUsername(String email) {
         UserAccount user = userAccountRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
+                .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
 
         if (!user.getActive()) {
-            throw new UsernameNotFoundException("User account is inactive");
+            throw new RuntimeException("User account is inactive");
         }
 
-        return User.builder()
-                .username(user.getEmail())
-                .password(user.getPasswordHash())
-                .authorities(Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user.getRole().name())))
-                .build();
+        return user;
     }
 }
