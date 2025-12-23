@@ -1,75 +1,90 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "issued_device_record")
 public class IssuedDeviceRecord {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
+    @NotNull(message = "Employee is required")
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
     private EmployeeProfile employee;
-    
+
+    @NotNull(message = "Device item is required")
     @ManyToOne
     @JoinColumn(name = "device_item_id", nullable = false)
     private DeviceCatalogItem deviceItem;
-    
+
     @Column(nullable = false)
     private LocalDate issuedDate;
-    
+
     private LocalDate returnedDate;
-    
+
     @Column(nullable = false)
     private String status = "ISSUED";
-    
-    public IssuedDeviceRecord() {}
-    
+
+    public IssuedDeviceRecord() {
+    }
+
     public IssuedDeviceRecord(EmployeeProfile employee, DeviceCatalogItem deviceItem, LocalDate issuedDate) {
         this.employee = employee;
         this.deviceItem = deviceItem;
         this.issuedDate = issuedDate;
         this.status = "ISSUED";
     }
-    
-    //  getters and setters
-    public Long getId() { 
-     return id;
-      }
-    public void setId(Long id) { 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
-         }
-    public EmployeeProfile getEmployee() { 
-    return employee;
-     }
-    public void setEmployee(EmployeeProfile employee) { 
-    this.employee = employee; 
     }
-    public DeviceCatalogItem getDeviceItem() { 
-    return deviceItem;
-     }
+
+    public EmployeeProfile getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(EmployeeProfile employee) {
+        this.employee = employee;
+    }
+
+    public DeviceCatalogItem getDeviceItem() {
+        return deviceItem;
+    }
+
     public void setDeviceItem(DeviceCatalogItem deviceItem) {
-     this.deviceItem = deviceItem;
-      }
+        this.deviceItem = deviceItem;
+    }
+
     public LocalDate getIssuedDate() {
-     return issuedDate;
-      }
+        return issuedDate;
+    }
+
     public void setIssuedDate(LocalDate issuedDate) {
-     this.issuedDate = issuedDate;
-      }
-    public LocalDate getReturnedDate() { 
-        return returnedDate; 
+        this.issuedDate = issuedDate;
     }
-    public void setReturnedDate(LocalDate returnedDate) { 
-    this.returnedDate = returnedDate; 
+
+    public LocalDate getReturnedDate() {
+        return returnedDate;
     }
+
+    public void setReturnedDate(LocalDate returnedDate) {
+        this.returnedDate = returnedDate;
+    }
+
     public String getStatus() {
-     return status;
-      }
+        return status;
+    }
+
     public void setStatus(String status) {
-     this.status = status;
-      }
+        this.status = status;
+    }
 }
