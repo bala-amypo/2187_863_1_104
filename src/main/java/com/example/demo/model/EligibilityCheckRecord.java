@@ -83,40 +83,6 @@ public class EligibilityCheckRecord {
         this.reason = reason;
     }
 
-    public void setEmployeeId(Long employeeId) {
-        // This method is needed for tests but we use the relationship
-        if (this.employee == null) {
-            this.employee = new EmployeeProfile();
-        }
-        this.employee.setId(employeeId);
-    }
-
-    public void setEmployeeId(long employeeId) {
-        setEmployeeId(Long.valueOf(employeeId));
-    }
-
-    public void setDeviceItemId(Long deviceItemId) {
-        // This method is needed for tests but we use the relationship
-        if (this.deviceItem == null) {
-            this.deviceItem = new DeviceCatalogItem();
-        }
-        this.deviceItem.setId(deviceItemId);
-    }
-
-    public void setDeviceItemId(long deviceItemId) {
-        setDeviceItemId(Long.valueOf(deviceItemId));
-    }
-
-    @PrePersist
-    public void setPrePersist() {
-        this.checkedAt = LocalDateTime.now();
-    }
-
-    @PrePersist
-    protected void onCreate() {
-        checkedAt = LocalDateTime.now();
-    }
-
     public LocalDateTime getCheckedAt() {
         return checkedAt;
     }
