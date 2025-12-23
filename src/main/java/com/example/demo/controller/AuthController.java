@@ -1,12 +1,14 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.JwtResponse;
-import com.example.demo.dto.LoginRequest;
+import com.example.demo.dto.AuthRequest;
+import com.example.demo.dto.AuthResponse;
 import com.example.demo.dto.RegisterRequest;
 import com.example.demo.exception.BadRequestException;
 import com.example.demo.model.UserAccount;
 import com.example.demo.repository.UserAccountRepository;
 import com.example.demo.security.JwtTokenProvider;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
+@Tag(name = "Authentication Endpoints")
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
@@ -35,6 +38,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
+    @Operation(summary = "Register new user")
     public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest request) {
         if (userAccountRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new BadRequestException("Email already exists");
@@ -52,12 +56,14 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest request) {
+    @Operation(summary = "Login user")
+    public ResponseEntity<?> login(@Valid @RequestBody AuthRequest request) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
 
         String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtResponse(jwt));
+        UserAccount user = userAccountRepository.findByEmail(request.getEmail()).orElseThrow();
+        return ResponseEntity.ok(new AuthResponse(jwt, user.getId(), user.getEmail(), user.getRole().toString()));
     }
 }

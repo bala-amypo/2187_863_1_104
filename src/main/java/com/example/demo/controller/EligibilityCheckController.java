@@ -2,12 +2,15 @@ package com.example.demo.controller;
 
 import com.example.demo.model.EligibilityCheckRecord;
 import com.example.demo.service.EligibilityCheckService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/eligibility")
+@Tag(name = "Eligibility Check Endpoints")
 public class EligibilityCheckController {
 
     private final EligibilityCheckService eligibilityCheckService;
@@ -16,9 +19,10 @@ public class EligibilityCheckController {
         this.eligibilityCheckService = eligibilityCheckService;
     }
 
-    @PostMapping("/check")
-    public ResponseEntity<EligibilityCheckRecord> checkEligibility(@RequestParam Long employeeId, 
-                                                                  @RequestParam Long deviceItemId) {
+    @PostMapping("/validate/{employeeId}/{deviceItemId}")
+    @Operation(summary = "Validate eligibility")
+    public ResponseEntity<EligibilityCheckRecord> validateEligibility(@PathVariable Long employeeId, 
+                                                                     @PathVariable Long deviceItemId) {
         try {
             EligibilityCheckRecord result = eligibilityCheckService.validateEligibility(employeeId, deviceItemId);
             return ResponseEntity.ok(result);
@@ -28,12 +32,23 @@ public class EligibilityCheckController {
     }
 
     @GetMapping("/employee/{employeeId}")
+    @Operation(summary = "Get eligibility checks by employee")
     public List<EligibilityCheckRecord> getEligibilityHistory(@PathVariable Long employeeId) {
         return eligibilityCheckService.getChecksByEmployee(employeeId);
     }
 
-    @GetMapping
-    public List<EligibilityCheckRecord> getAllEligibilityChecks() {
-        return eligibilityCheckService.getChecksByEmployee(null);
+    @GetMapping("/{checkId}")
+    @Operation(summary = "Get eligibility check by ID")
+    public ResponseEntity<EligibilityCheckRecord> getEligibilityCheck(@PathVariable Long checkId) {
+        try {
+            List<EligibilityCheckRecord> allChecks = eligibilityCheckService.getChecksByEmployee(null);
+            EligibilityCheckRecord check = allChecks.stream()
+                    .filter(c -> c.getId().equals(checkId))
+                    .findFirst()
+                    .orElse(null);
+            return check != null ? ResponseEntity.ok(check) : ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
