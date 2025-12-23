@@ -4,19 +4,25 @@ import com.example.demo.model.UserAccount;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-
 @Component
 public class JwtTokenProvider {
 
-    @Value("${app.jwt.secret:mySecretKey123456789012345678901234567890}")
     private String jwtSecret;
-
-    @Value("${app.jwt.expiration:86400000}")
     private long jwtExpirationInMs;
 
+    // No-args constructor for Spring
+    public JwtTokenProvider() {
+        this.jwtSecret = "mySecretKey123456789012345678901234567890";
+        this.jwtExpirationInMs = 86400000;
+    }
+
+    // Constructor for tests
+    public JwtTokenProvider(String secret, int validityInMs) {
+        this.jwtSecret = secret;
+        this.jwtExpirationInMs = validityInMs;
+    }
+
     public String generateToken(UserAccount user) {
-        // Simple token generation without JWT library
         return "jwt_" + user.getEmail() + "_" + System.currentTimeMillis();
     }
 
@@ -39,6 +45,6 @@ public class JwtTokenProvider {
     }
 
     public String getRole(String token) {
-        return "USER"; // Default role
+        return "USER";
     }
 }
