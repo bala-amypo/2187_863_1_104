@@ -5,8 +5,7 @@ import java.util.List;
 
 public interface PolicyRuleService {
     PolicyRule createRule(PolicyRule rule);
+    PolicyRule getRuleById(Long id);
     List<PolicyRule> getAllRules();
     List<PolicyRule> getActiveRules();
-    PolicyRule updateRule(Long id, PolicyRule rule);
-    PolicyRule getRuleById(Long id);
 }
