@@ -46,10 +46,4 @@ public class PolicyRuleServiceImpl implements PolicyRuleService {
         if (rule.getActive() != null) existingRule.setActive(rule.getActive());
         return policyRuleRepository.save(existingRule);
     }
-
-    @Override
-    public PolicyRule getRuleById(Long id) {
-        return policyRuleRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Policy rule not found"));
-    }
 }
