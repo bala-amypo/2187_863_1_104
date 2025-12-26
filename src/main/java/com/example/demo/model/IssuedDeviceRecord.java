@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import java.time.LocalDate;
 
@@ -14,9 +15,11 @@ public class IssuedDeviceRecord {
     private Long id;
     
     @Column(nullable = false)
+    @NotNull(message = "Employee ID is required")
     private Long employeeId;
     
     @Column(nullable = false)
+    @NotNull(message = "Device item ID is required")
     private Long deviceItemId;
     
     @Column(nullable = false)

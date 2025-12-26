@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 @Entity
@@ -13,12 +15,14 @@ public class PolicyRule {
     private Long id;
     
     @Column(unique = true, nullable = false)
+    @NotBlank(message = "Rule code is required")
     private String ruleCode;
     
     private String appliesToDepartment;
     
     private String appliesToRole;
     
+    @Positive(message = "Max devices allowed must be positive")
     private Integer maxDevicesAllowed;
     
     @Column(nullable = false)
