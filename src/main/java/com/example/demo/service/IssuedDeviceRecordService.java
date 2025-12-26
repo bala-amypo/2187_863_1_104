@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface IssuedDeviceRecordService {
     IssuedDeviceRecord issueDevice(IssuedDeviceRecord record);
-    IssuedDeviceRecord returnDevice(Long recordId);
-    List<IssuedDeviceRecord> getIssuedDevicesByEmployee(Long employeeId);
+    IssuedDeviceRecord returnDevice(Long id);
+    List<IssuedDeviceRecord> getAllIssuedDevices();
     IssuedDeviceRecord getIssuedDeviceById(Long id);
 }

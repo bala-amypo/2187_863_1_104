@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface DeviceCatalogService {
     DeviceCatalogItem createItem(DeviceCatalogItem item);
-    DeviceCatalogItem updateActiveStatus(Long id, boolean active);
-    DeviceCatalogItem updateDevice(Long id, DeviceCatalogItem device);
+    DeviceCatalogItem getItemById(Long id);
     List<DeviceCatalogItem> getAllItems();
+    DeviceCatalogItem updateActiveStatus(Long id, Boolean active);
 }
