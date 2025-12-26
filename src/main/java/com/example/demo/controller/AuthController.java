@@ -59,7 +59,7 @@ public class AuthController {
             throw new BadRequestException("Invalid credentials");
         }
         
-        String jwt = tokenProvider.generateToken(user);
+        String jwt = tokenProvider.generateToken(user.getEmail());
         return ResponseEntity.ok(new AuthResponse(jwt, user.getId(), user.getEmail(), user.getRole().toString()));
     }
 }
