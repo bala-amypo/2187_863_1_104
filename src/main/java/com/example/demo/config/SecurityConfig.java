@@ -38,7 +38,7 @@ public class SecurityConfig {
                     new AntPathRequestMatcher("/v3/api-docs/**"),
                     new AntPathRequestMatcher("/api-docs/**")
                 ).permitAll()
-                .anyRequest().permitAll()
+                .anyRequest().authenticated()
             )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .headers(headers -> headers.frameOptions(frame -> frame.disable()));
