@@ -1,117 +1,36 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "eligibility_check_record")
+@Table(name = "eligibility_check_records")
+@Data
 public class EligibilityCheckRecord {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "employee_id", nullable = false)
-    private EmployeeProfile employee;
-
-    @ManyToOne
-    @JoinColumn(name = "device_item_id", nullable = false)
-    private DeviceCatalogItem deviceItem;
-
+    
+    @Column(nullable = false)
+    private Long employeeId;
+    
+    @Column(nullable = false)
+    private Long deviceItemId;
+    
     @Column(nullable = false)
     private Boolean isEligible;
-
-    @Column(nullable = false)
+    
+    @Column(length = 1000)
     private String reason;
-
-    @Column(nullable = false, updatable = false)
+    
     private LocalDateTime checkedAt;
-
+    
     @PrePersist
     public void prePersist() {
-        this.checkedAt = LocalDateTime.now();
-    }
-
-    public EligibilityCheckRecord() {
-    }
-
-    public EligibilityCheckRecord(EmployeeProfile employee, DeviceCatalogItem deviceItem, Boolean isEligible, String reason) {
-        this.employee = employee;
-        this.deviceItem = deviceItem;
-        this.isEligible = isEligible;
-        this.reason = reason;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public EmployeeProfile getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(EmployeeProfile employee) {
-        this.employee = employee;
-    }
-
-    public DeviceCatalogItem getDeviceItem() {
-        return deviceItem;
-    }
-
-    public void setDeviceItem(DeviceCatalogItem deviceItem) {
-        this.deviceItem = deviceItem;
-    }
-
-    public Boolean getIsEligible() {
-        return isEligible;
-    }
-
-    public void setIsEligible(Boolean isEligible) {
-        this.isEligible = isEligible;
-    }
-
-    public String getReason() {
-        return reason;
-    }
-
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
-
-    public void setEmployeeId(Long employeeId) {
-        // This method is needed for tests but we use the relationship
-        if (this.employee == null) {
-            this.employee = new EmployeeProfile();
+        if (checkedAt == null) {
+            checkedAt = LocalDateTime.now();
         }
-        this.employee.setId(employeeId);
-    }
-
-    public void setEmployeeId(long employeeId) {
-        setEmployeeId(Long.valueOf(employeeId));
-    }
-
-    public void setDeviceItemId(Long deviceItemId) {
-        // This method is needed for tests but we use the relationship
-        if (this.deviceItem == null) {
-            this.deviceItem = new DeviceCatalogItem();
-        }
-        this.deviceItem.setId(deviceItemId);
-    }
-
-    public void setDeviceItemId(long deviceItemId) {
-        setDeviceItemId(Long.valueOf(deviceItemId));
-    }
-
-    public LocalDateTime getCheckedAt() {
-        return checkedAt;
-    }
-
-    public void setCheckedAt(LocalDateTime checkedAt) {
-        this.checkedAt = checkedAt;
     }
 }
