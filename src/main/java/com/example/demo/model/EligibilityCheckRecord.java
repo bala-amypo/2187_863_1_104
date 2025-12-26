@@ -33,6 +33,80 @@ public class EligibilityCheckRecord {
         this.checkedAt = LocalDateTime.now();
     }
 
+    public EligibilityCheckRecord() {
+    }
+
+    public EligibilityCheckRecord(EmployeeProfile employee, DeviceCatalogItem deviceItem, Boolean isEligible, String reason) {
+        this.employee = employee;
+        this.deviceItem = deviceItem;
+        this.isEligible = isEligible;
+        this.reason = reason;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public EmployeeProfile getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(EmployeeProfile employee) {
+        this.employee = employee;
+    }
+
+    public DeviceCatalogItem getDeviceItem() {
+        return deviceItem;
+    }
+
+    public void setDeviceItem(DeviceCatalogItem deviceItem) {
+        this.deviceItem = deviceItem;
+    }
+
+    public Boolean getIsEligible() {
+        return isEligible;
+    }
+
+    public void setIsEligible(Boolean isEligible) {
+        this.isEligible = isEligible;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public void setEmployeeId(Long employeeId) {
+        // This method is needed for tests but we use the relationship
+        if (this.employee == null) {
+            this.employee = new EmployeeProfile();
+        }
+        this.employee.setId(employeeId);
+    }
+
+    public void setEmployeeId(long employeeId) {
+        setEmployeeId(Long.valueOf(employeeId));
+    }
+
+    public void setDeviceItemId(Long deviceItemId) {
+        // This method is needed for tests but we use the relationship
+        if (this.deviceItem == null) {
+            this.deviceItem = new DeviceCatalogItem();
+        }
+        this.deviceItem.setId(deviceItemId);
+    }
+
+    public void setDeviceItemId(long deviceItemId) {
+        setDeviceItemId(Long.valueOf(deviceItemId));
+    }
+
     public LocalDateTime getCheckedAt() {
         return checkedAt;
     }

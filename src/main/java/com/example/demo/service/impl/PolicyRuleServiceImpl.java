@@ -36,14 +36,8 @@ public class PolicyRuleServiceImpl implements PolicyRuleService {
     }
 
     @Override
-    public PolicyRule updateRule(Long id, PolicyRule rule) {
-        PolicyRule existingRule = policyRuleRepository.findById(id)
+    public PolicyRule getRuleById(Long id) {
+        return policyRuleRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Policy rule not found"));
-        if (rule.getDescription() != null) existingRule.setDescription(rule.getDescription());
-        if (rule.getAppliesToRole() != null) existingRule.setAppliesToRole(rule.getAppliesToRole());
-        if (rule.getAppliesToDepartment() != null) existingRule.setAppliesToDepartment(rule.getAppliesToDepartment());
-        if (rule.getMaxDevicesAllowed() != null) existingRule.setMaxDevicesAllowed(rule.getMaxDevicesAllowed());
-        if (rule.getActive() != null) existingRule.setActive(rule.getActive());
-        return policyRuleRepository.save(existingRule);
     }
 }
